@@ -15,5 +15,10 @@ import ec.edu.ups.idao.IVehiculoDao;
 public class ControladorCliente {
     private IClienteDao clienteDAO;
     private IVehiculoDao vehiculoDAO;
+
+    public ControladorCliente() {
+    }
+    
+    
     
 }
