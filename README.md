@@ -57,15 +57,27 @@
 
 [Clase VentanaPrincipal](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-05-Gesti-n-de-Tickets-Parqueadero-/blob/master/src/ec/edu/ups/vista/VentanaPrincipal.java)
 
+![Interfaz de la VentanaPrincipal](
+
 [Clase VentanaCliente](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-05-Gesti-n-de-Tickets-Parqueadero-/blob/master/src/ec/edu/ups/vista/VentanaCliente.java)
+
+![Interfaz de la VentanaCliente](
 
 [Clase VentanaVehiculo](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-05-Gesti-n-de-Tickets-Parqueadero-/blob/master/src/ec/edu/ups/vista/VentanaVehiculo.java)
 
+![Interfaz de la VentanaVehiculo](
+
 [Clase VentanaIngresoTicket](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-05-Gesti-n-de-Tickets-Parqueadero-/blob/master/src/ec/edu/ups/vista/VentanaIngresoTicket.java)
+
+![Interfaz de la VentanaIngresoTicket](
 
 [Clase VentanaSalida](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-05-Gesti-n-de-Tickets-Parqueadero-/blob/master/src/ec/edu/ups/vista/VentanaSalida.java)
 
+![Interfaz de la VentanaSalida](
+
 [Clase VentanaListar](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-05-Gesti-n-de-Tickets-Parqueadero-/blob/master/src/ec/edu/ups/vista/VentanaListar.java)
+
+![Interfaz de la VentanaListar](
 
 **3. Realizar varios commits en la herramienta GitHub que demuestren el desarrollo de la aplicación desde principio a fin. Los commits deben ser realizados por todos los integrantes del grupo.**
 
