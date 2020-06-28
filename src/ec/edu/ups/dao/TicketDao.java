@@ -5,18 +5,17 @@
  */
 package ec.edu.ups.dao;
 
-import ec.edu.ups.idao.IClienteDao;
 import ec.edu.ups.idao.ITicketDao;
-import ec.edu.ups.modelo.Cliente;
+
 import ec.edu.ups.modelo.Ticket;
-import ec.edu.ups.modelo.Vehiculo;
+
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 
 public class TicketDao implements ITicketDao  {
     private List<Ticket> tickets;
-    private IClienteDao clienteDAO;
     public TicketDao() {
         tickets= new ArrayList<>();
     }
@@ -42,17 +41,30 @@ public class TicketDao implements ITicketDao  {
 
     @Override
     public void update(Ticket ticket) {
-        
+         for (int i = 0; i < tickets.size(); i++) {
+           Ticket t = tickets.get(i);
+            if (t.getNumero()==ticket.getNumero()) {
+               tickets.set(i, ticket);
+                break;
+            }
+        }
     }
 
     @Override
     public void delete(Ticket ticket) {
-        
+          Iterator<Ticket> it = tickets.iterator();
+        while (it.hasNext()) {
+            Ticket t = it.next();
+            if (t.getNumero()==ticket.getNumero()) {
+                it.remove();
+                break;
+            }
+        }
     }
 
     @Override
     public List<Ticket> ListaTickets() {
-        return null;
+        return tickets;
         
     }
     
