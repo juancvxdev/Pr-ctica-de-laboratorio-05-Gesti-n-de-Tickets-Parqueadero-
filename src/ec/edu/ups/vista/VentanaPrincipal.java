@@ -5,6 +5,13 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorCliente;
+import ec.edu.ups.controlador.ControladorTicket;
+import ec.edu.ups.controlador.ControladorVehiculo;
+import ec.edu.ups.dao.ClienteDao;
+import ec.edu.ups.dao.TicketDao;
+import ec.edu.ups.dao.VehiculoDao;
+
 /**
  *
  * @author paul_
@@ -18,15 +25,36 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private VentanaSalida ventanaSalida;
     private VentanaListar ventanaListar;
     
+    
+    private  ClienteDao clienteDAO;
+    private  VehiculoDao vehiculoDAO;
+    private  TicketDao ticketDAO;
+    
+    private ControladorCliente controladorCliente;
+    private ControladorVehiculo controladorVehiculo;
+    private ControladorTicket controladorTicket;
+    
     /**
      * Creates new form VentanaPrincipal
      */
     public VentanaPrincipal() {
+        
+        clienteDAO = new ClienteDao();
+        vehiculoDAO = new VehiculoDao();
+        ticketDAO = new TicketDao();
+        
+        controladorCliente = new ControladorCliente(clienteDAO,vehiculoDAO);
+        controladorVehiculo = new ControladorVehiculo(vehiculoDAO);
+        controladorTicket = new ControladorTicket(ticketDAO);
+        
         ventanaVehiculo = new VentanaVehiculo();
         ventanaCliente = new VentanaCliente();
         ventanaIngresoTicket = new VentanaIngresoTicket();
         ventanaSalida = new VentanaSalida();
         ventanaListar = new VentanaListar();
+        
+        
+        
         
         initComponents();
     }

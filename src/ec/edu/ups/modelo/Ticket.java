@@ -24,11 +24,12 @@ public class Ticket {
     public Ticket() {
     }
 
-    public Ticket(int numero, Date fechaHoraIngreso, Date fechaHoraSalida, Double total) {
+    public Ticket(int numero, Date fechaHoraIngreso, Date fechaHoraSalida, Double total, Vehiculo vehiculo) {
         this.numero = numero;
         this.fechaHoraIngreso = fechaHoraIngreso;
         this.fechaHoraSalida = fechaHoraSalida;
         this.total = total;
+        this.vehiculo=vehiculo;
     }
 
     

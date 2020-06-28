@@ -24,6 +24,8 @@ public interface ITicketDao {
  public void delete(Ticket ticket);
     
  public List<Ticket> ListaTickets();
+ 
+ public int obtenerCodigo();
     
 }
 
