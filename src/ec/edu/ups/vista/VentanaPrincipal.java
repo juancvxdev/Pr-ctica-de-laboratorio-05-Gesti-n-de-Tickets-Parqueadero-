@@ -11,6 +11,9 @@ import ec.edu.ups.controlador.ControladorVehiculo;
 import ec.edu.ups.dao.ClienteDao;
 import ec.edu.ups.dao.TicketDao;
 import ec.edu.ups.dao.VehiculoDao;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDesktopPane;
 
 /**
@@ -38,8 +41,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form VentanaPrincipal
      */
-    public VentanaPrincipal() {
-        
+    public VentanaPrincipal() throws ParseException {
+          initComponents();
+        this.setExtendedState(MAXIMIZED_BOTH);
         clienteDAO = new ClienteDao();
         vehiculoDAO = new VehiculoDao();
         ticketDAO = new TicketDao();
@@ -57,7 +61,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         
         
         
-        initComponents();
+      
     }
 
     /**
@@ -106,6 +110,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuBar2.add(jMenu5);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new java.awt.GridLayout());
+        getContentPane().add(desktopPane);
 
         btnMenu.setMnemonic('f');
         btnMenu.setText("Menu");
@@ -187,21 +193,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         setJMenuBar(menuBar);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, 621, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -265,7 +256,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaPrincipal().setVisible(true);
+                try {
+                    new VentanaPrincipal().setVisible(true);
+                } catch (ParseException ex) {
+                    Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

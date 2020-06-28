@@ -7,6 +7,7 @@ package ec.edu.ups.vista;
 
 import ec.edu.ups.controlador.ControladorCliente;
 import ec.edu.ups.controlador.ControladorVehiculo;
+import java.text.ParseException;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -18,11 +19,16 @@ public class VentanaVehiculo extends javax.swing.JInternalFrame {
 
    private ControladorVehiculo controladorVehiculo;
    private ControladorCliente controladorCliente;
-    public VentanaVehiculo(ControladorVehiculo controladorVehiculo , ControladorCliente controladorCliente) {
+    public VentanaVehiculo(ControladorVehiculo controladorVehiculo , ControladorCliente controladorCliente) throws ParseException {
         initComponents();
         
         this.controladorCliente=controladorCliente;
         this.controladorVehiculo=controladorVehiculo;
+        
+         txtPlaca.setFormatterFactory(
+         new javax.swing.text.DefaultFormatterFactory(
+          new javax.swing.text.MaskFormatter("***-####")
+         ));
     }
 
     /**
