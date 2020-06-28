@@ -25,7 +25,7 @@ public class ControladorCliente {
 
     public ControladorCliente(ClienteDao clienteDAO, VehiculoDao vehiculoDao) {
         this.clienteDAO=clienteDAO;
-        this.vehiculoDAO=vehiculoDAO;
+        this.vehiculoDAO=vehiculoDao;
         
       
     }
@@ -47,7 +47,7 @@ public class ControladorCliente {
     clienteDAO.read(cedula);
    }
      public void agregarVehiculo(String placa, String marca, String modelo){
-     vehiculo = new Vehiculo( placa,marca, modelo);
+     vehiculo = new Vehiculo(placa,marca, modelo);
     vehiculoDAO.create(vehiculo);
     cliente.agregarVehiculo(vehiculo);
     clienteDAO.update(cliente);
