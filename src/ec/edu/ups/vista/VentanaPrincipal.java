@@ -47,8 +47,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         controladorVehiculo = new ControladorVehiculo(vehiculoDAO);
         controladorTicket = new ControladorTicket(ticketDAO);
         
-        ventanaVehiculo = new VentanaVehiculo();
-        ventanaCliente = new VentanaCliente();
+      
+        ventanaCliente = new VentanaCliente(controladorCliente,this);
         ventanaIngresoTicket = new VentanaIngresoTicket();
         ventanaSalida = new VentanaSalida();
         ventanaListar = new VentanaListar();
@@ -209,9 +209,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        desktopPane.add(ventanaVehiculo);
+       // desktopPane.add(ventanaVehiculo);
         desktopPane.add(ventanaCliente);
-        ventanaVehiculo.setVisible(true);
+       // ventanaVehiculo.setVisible(true);
         ventanaCliente.setVisible(true);
         
     }//GEN-LAST:event_btnIngresarActionPerformed

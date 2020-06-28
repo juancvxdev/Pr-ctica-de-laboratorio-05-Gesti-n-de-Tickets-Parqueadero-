@@ -5,17 +5,23 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorCliente;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author paul_
  */
 public class VentanaCliente extends javax.swing.JInternalFrame {
-
-    /**
-     * Creates new form VentanaCliente
-     */
-    public VentanaCliente() {
+   private VentanaVehiculo ventanaVehiculo;
+   private VentanaPrincipal ventanaPrincipal;
+   private ControladorCliente controladorCliente;
+   private String cedula;
+    public VentanaCliente(ControladorCliente controladorCliente,VentanaPrincipal ventanaPrincipal) {
         initComponents();
+        ventanaVehiculo= new VentanaVehiculo();
+        this.ventanaPrincipal=ventanaPrincipal;
+        this.controladorCliente=controladorCliente;
     }
 
     /**
@@ -54,6 +60,11 @@ public class VentanaCliente extends javax.swing.JInternalFrame {
 
         btnCrearCliente.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         btnCrearCliente.setText("CREAR");
+        btnCrearCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearClienteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -122,6 +133,13 @@ public class VentanaCliente extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCrearClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearClienteActionPerformed
+        cedula=txtCedula.getText();
+        controladorCliente.registrarCliente(cedula, txtNombre.getText(), txtDireccion.getText(), txtTelefono.getText());
+        ventanaVehiculo.getTxtCedula().setText(cedula);
+         
+    }//GEN-LAST:event_btnCrearClienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
