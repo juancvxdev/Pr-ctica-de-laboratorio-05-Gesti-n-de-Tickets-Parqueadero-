@@ -11,10 +11,22 @@ package ec.edu.ups.vista;
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
+    
+    private VentanaVehiculo ventanaVehiculo;
+    private VentanaCliente ventanaCliente;
+    private VentanaIngresoTicket ventanaIngresoTicket;
+    private VentanaSalida ventanaSalida;
+    private VentanaListar ventanaListar;
+    
     /**
      * Creates new form VentanaPrincipal
      */
     public VentanaPrincipal() {
+        ventanaVehiculo = new VentanaVehiculo();
+        ventanaCliente = new VentanaCliente();
+        ventanaIngresoTicket = new VentanaIngresoTicket();
+        ventanaSalida = new VentanaSalida();
+        ventanaListar = new VentanaListar();
         
         initComponents();
     }
@@ -69,21 +81,46 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnMenu.setMnemonic('f');
         btnMenu.setText("Menu");
 
+        btnIngresar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
         btnIngresar.setMnemonic('o');
         btnIngresar.setText("Ingreso Vehiculo");
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarActionPerformed(evt);
+            }
+        });
         btnMenu.add(btnIngresar);
 
+        btnIngresoTicket.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_MASK));
         btnIngresoTicket.setMnemonic('s');
         btnIngresoTicket.setText("Ingreso Ticket");
+        btnIngresoTicket.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresoTicketActionPerformed(evt);
+            }
+        });
         btnMenu.add(btnIngresoTicket);
 
+        btnSalidaTicket.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         btnSalidaTicket.setText("Salida Ticket");
+        btnSalidaTicket.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalidaTicketActionPerformed(evt);
+            }
+        });
         btnMenu.add(btnSalidaTicket);
 
+        btnListaTickets.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
         btnListaTickets.setMnemonic('a');
         btnListaTickets.setText("Lista de Ticktes");
+        btnListaTickets.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListaTicketsActionPerformed(evt);
+            }
+        });
         btnMenu.add(btnListaTickets);
 
+        btnSalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
         btnSalir.setMnemonic('x');
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -142,6 +179,32 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+        desktopPane.add(ventanaVehiculo);
+        desktopPane.add(ventanaCliente);
+        ventanaVehiculo.setVisible(true);
+        ventanaCliente.setVisible(true);
+        
+    }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void btnIngresoTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresoTicketActionPerformed
+        desktopPane.add(ventanaIngresoTicket);
+        ventanaIngresoTicket.setVisible(true);
+        
+    }//GEN-LAST:event_btnIngresoTicketActionPerformed
+
+    private void btnSalidaTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalidaTicketActionPerformed
+        desktopPane.add(ventanaSalida);
+        ventanaSalida.setVisible(true);
+        
+    }//GEN-LAST:event_btnSalidaTicketActionPerformed
+
+    private void btnListaTicketsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaTicketsActionPerformed
+        desktopPane.add(ventanaListar);
+        ventanaListar.setVisible(true);
+        
+    }//GEN-LAST:event_btnListaTicketsActionPerformed
 
     /**
      * @param args the command line arguments
