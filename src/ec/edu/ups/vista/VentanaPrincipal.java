@@ -11,6 +11,7 @@ import ec.edu.ups.controlador.ControladorVehiculo;
 import ec.edu.ups.dao.ClienteDao;
 import ec.edu.ups.dao.TicketDao;
 import ec.edu.ups.dao.VehiculoDao;
+import javax.swing.JDesktopPane;
 
 /**
  *
@@ -47,8 +48,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         controladorVehiculo = new ControladorVehiculo(vehiculoDAO);
         controladorTicket = new ControladorTicket(ticketDAO);
         
-      
-        ventanaCliente = new VentanaCliente(controladorCliente,this);
+        ventanaVehiculo = new VentanaVehiculo (controladorVehiculo,controladorCliente);
+        ventanaCliente = new VentanaCliente(controladorCliente,this, ventanaVehiculo);
         ventanaIngresoTicket = new VentanaIngresoTicket();
         ventanaSalida = new VentanaSalida();
         ventanaListar = new VentanaListar();
@@ -267,6 +268,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 new VentanaPrincipal().setVisible(true);
             }
         });
+    }
+
+    public JDesktopPane getDesktopPane() {
+        return desktopPane;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

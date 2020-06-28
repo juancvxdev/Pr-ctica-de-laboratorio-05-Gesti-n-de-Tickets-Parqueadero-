@@ -17,11 +17,12 @@ public class VentanaCliente extends javax.swing.JInternalFrame {
    private VentanaPrincipal ventanaPrincipal;
    private ControladorCliente controladorCliente;
    private String cedula;
-    public VentanaCliente(ControladorCliente controladorCliente,VentanaPrincipal ventanaPrincipal) {
+    public VentanaCliente(ControladorCliente controladorCliente,VentanaPrincipal ventanaPrincipal, VentanaVehiculo ventanaVehiculo) {
         initComponents();
-        ventanaVehiculo= new VentanaVehiculo();
+      
         this.ventanaPrincipal=ventanaPrincipal;
         this.controladorCliente=controladorCliente;
+        this.ventanaVehiculo=ventanaVehiculo;
     }
 
     /**
@@ -135,12 +136,22 @@ public class VentanaCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearClienteActionPerformed
+        ventanaPrincipal.getDesktopPane().add(ventanaVehiculo);
         cedula=txtCedula.getText();
         controladorCliente.registrarCliente(cedula, txtNombre.getText(), txtDireccion.getText(), txtTelefono.getText());
         ventanaVehiculo.getTxtCedula().setText(cedula);
+        ventanaVehiculo.setVisible(true);
+        Limpiar();
+        this.dispose();
+        
          
     }//GEN-LAST:event_btnCrearClienteActionPerformed
-
+public void Limpiar(){
+txtCedula.setText("");
+txtNombre.setText("");
+txtDireccion.setText("");
+txtTelefono.setText("");
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCrearCliente;

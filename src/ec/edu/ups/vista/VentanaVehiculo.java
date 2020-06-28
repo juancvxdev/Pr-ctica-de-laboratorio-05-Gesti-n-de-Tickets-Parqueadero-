@@ -5,6 +5,9 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorCliente;
+import ec.edu.ups.controlador.ControladorVehiculo;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -13,11 +16,13 @@ import javax.swing.JTextField;
  */
 public class VentanaVehiculo extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form VentanaVehiculo
-     */
-    public VentanaVehiculo() {
+   private ControladorVehiculo controladorVehiculo;
+   private ControladorCliente controladorCliente;
+    public VentanaVehiculo(ControladorVehiculo controladorVehiculo , ControladorCliente controladorCliente) {
         initComponents();
+        
+        this.controladorCliente=controladorCliente;
+        this.controladorVehiculo=controladorVehiculo;
     }
 
     /**
@@ -55,6 +60,11 @@ public class VentanaVehiculo extends javax.swing.JInternalFrame {
         btnCrearVehiculo.setBackground(new java.awt.Color(204, 255, 255));
         btnCrearVehiculo.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         btnCrearVehiculo.setText("CREAR");
+        btnCrearVehiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearVehiculoActionPerformed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel8.setText("Cedula:");
@@ -134,9 +144,26 @@ public class VentanaVehiculo extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCrearVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearVehiculoActionPerformed
+       
+        controladorVehiculo.crearVehiculo(txtPlaca.getText(),txtMarca.getText(), txtModelo.getText());
+        controladorCliente.agregarVehiculo(txtPlaca.getText(),txtMarca.getText(), txtModelo.getText());
+         JOptionPane.showMessageDialog(this, "Vehiculo registrado correctamente");
+         Limpiar();
+         this.dispose();
+    }//GEN-LAST:event_btnCrearVehiculoActionPerformed
+
     public JTextField getTxtCedula() {
         return txtCedula;
     }
+   
+    public void Limpiar(){
+    txtPlaca.setText("");
+    txtMarca.setText("");
+    txtModelo.setText("");
+    
+    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCrearVehiculo;
