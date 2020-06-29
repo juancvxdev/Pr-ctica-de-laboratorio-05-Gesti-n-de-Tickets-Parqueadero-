@@ -6,6 +6,7 @@
 package ec.edu.ups.idao;
 
 import ec.edu.ups.modelo.Ticket;
+import ec.edu.ups.modelo.Vehiculo;
 
 import java.util.List;
 
@@ -26,6 +27,13 @@ public interface ITicketDao {
  public List<Ticket> ListaTickets();
  
  public int obtenerCodigo();
+ 
+ public Ticket buscarTicket (int numro);
+ 
+ public void agregarSalida(Ticket ticket);
+ 
+ public List <Ticket> ListaSalidas();
+         
     
 }
 

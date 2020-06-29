@@ -16,7 +16,7 @@ public class Ticket {
     private int numero;
     private Date fechaHoraIngreso;
     private Date fechaHoraSalida;
-    private int fraccion;
+    private double fraccion;
     private Double total;
     
     private Vehiculo vehiculo;
@@ -66,7 +66,7 @@ public class Ticket {
         this.total = total;
     }
 
-    public int getFraccion() {
+    public Double getFraccion() {
         return fraccion;
     }
 

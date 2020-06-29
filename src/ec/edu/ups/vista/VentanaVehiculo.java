@@ -8,6 +8,7 @@ package ec.edu.ups.vista;
 import ec.edu.ups.controlador.ControladorCliente;
 import ec.edu.ups.controlador.ControladorVehiculo;
 import java.text.ParseException;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -168,6 +169,10 @@ public class VentanaVehiculo extends javax.swing.JInternalFrame {
     txtMarca.setText("");
     txtModelo.setText("");
     
+    }
+
+    public JFormattedTextField getTxtPlaca() {
+        return txtPlaca;
     }
    
 

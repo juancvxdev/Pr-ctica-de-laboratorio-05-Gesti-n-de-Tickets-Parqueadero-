@@ -10,6 +10,7 @@ import ec.edu.ups.idao.ITicketDao;
 import ec.edu.ups.modelo.Ticket;
 import ec.edu.ups.modelo.Vehiculo;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -29,14 +30,42 @@ public class ControladorTicket {
         
         ticketDAO.create(ticket);
     }
-    public void buscarTicket(String placa){
-    
-    ticketDAO.read(placa);
-    }
-    public void eliminarTicket(String placa){
-   ticket= ticketDAO.read(placa);
+    public Ticket buscarTicket(String placa){
    
-}   
-  
+    ticket =ticketDAO.read(placa);
+    return ticket;
+    }
+   
+    public void agregarVehiculo(){
     
+    
+    }
+  public List<Ticket> ListarTickets(){
+        return ticketDAO.ListaTickets();
+   
+   }
+        public int obtenerSiguienteCodigo(){
+        int codigo = ticketDAO.obtenerCodigo();
+        
+        return codigo;
+        
+        
+}
+        public Ticket buscaTicketActualizar(int numero){
+            
+            ticket=ticketDAO.buscarTicket(numero);
+        return ticket;
+        
+        }
+        public void agregarSalida(Ticket ticket){
+        ticketDAO.agregarSalida(ticket);
+        }
+        public void eliminarTicket(Ticket ticket){
+        ticketDAO.delete(ticket);
+        }
+        
+        public List <Ticket> ListarSalidas(){
+        return ticketDAO.ListaSalidas();
+        
+        }
 }

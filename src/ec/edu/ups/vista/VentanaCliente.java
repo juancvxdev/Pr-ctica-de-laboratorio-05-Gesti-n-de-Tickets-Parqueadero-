@@ -17,13 +17,20 @@ public class VentanaCliente extends javax.swing.JInternalFrame {
    private VentanaPrincipal ventanaPrincipal;
    private ControladorCliente controladorCliente;
    private String cedula;
-    public VentanaCliente(ControladorCliente controladorCliente,VentanaPrincipal ventanaPrincipal, VentanaVehiculo ventanaVehiculo) {
+   private String placa;
+    public VentanaCliente(ControladorCliente controladorCliente,VentanaPrincipal ventanaPrincipal, VentanaVehiculo ventanaVehiculo,String placa) {
         initComponents();
       
         this.ventanaPrincipal=ventanaPrincipal;
         this.controladorCliente=controladorCliente;
         this.ventanaVehiculo=ventanaVehiculo;
+        this.placa=placa;
     }
+
+ 
+    
+
+ 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -44,6 +51,8 @@ public class VentanaCliente extends javax.swing.JInternalFrame {
         txtDireccion = new javax.swing.JTextField();
         txtTelefono = new javax.swing.JTextField();
         btnCrearCliente = new javax.swing.JButton();
+
+        setClosable(true);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del Cliente", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
 
@@ -140,6 +149,7 @@ public class VentanaCliente extends javax.swing.JInternalFrame {
         cedula=txtCedula.getText();
         controladorCliente.registrarCliente(cedula, txtNombre.getText(), txtDireccion.getText(), txtTelefono.getText());
         ventanaVehiculo.getTxtCedula().setText(cedula);
+        ventanaVehiculo.getTxtPlaca().setValue(placa);
         ventanaVehiculo.setVisible(true);
         Limpiar();
         this.dispose();

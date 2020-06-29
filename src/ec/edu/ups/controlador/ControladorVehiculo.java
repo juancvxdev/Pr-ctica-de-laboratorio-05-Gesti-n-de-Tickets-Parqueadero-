@@ -30,7 +30,10 @@ public class ControladorVehiculo {
      vehiculo= new Vehiculo(placa,marca,modelo);
      vehiculoDAO.update(vehiculo);
     }
-    
+    public Vehiculo buscarVehiculo(String placa){
+    vehiculo=vehiculoDAO.read(placa);
+        return vehiculo;
+    }
     public void eliminarVehiculo(String placa){
         vehiculo=vehiculoDAO.read(placa);
         vehiculoDAO.delete(vehiculo);

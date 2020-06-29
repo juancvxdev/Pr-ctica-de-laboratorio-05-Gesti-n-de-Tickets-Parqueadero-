@@ -7,6 +7,7 @@ package ec.edu.ups.dao;
 
 import ec.edu.ups.idao.IClienteDao;
 import ec.edu.ups.modelo.Cliente;
+import ec.edu.ups.modelo.Vehiculo;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.List;
  */
 public class ClienteDao implements IClienteDao { 
     private List<Cliente> clientes;
-
+    Vehiculo vehiculo;
     public ClienteDao() {
         clientes = new ArrayList<>();
     }
@@ -28,12 +29,14 @@ public class ClienteDao implements IClienteDao {
     }
 
     @Override
-    public Cliente read(String cedula) {
-        for (Cliente cliente : clientes) {
-            if (cliente.getCedula().equals(cedula)){
-                return cliente;
-            }
-        }
+    public Cliente read(String placa) {
+      for(Cliente  cliente : clientes){
+      if(cliente.buscarVehiculo(placa)!=null){
+        return cliente;
+      
+      }
+      }
+      
         return null;
         
     }

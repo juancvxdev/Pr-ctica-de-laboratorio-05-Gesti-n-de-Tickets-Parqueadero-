@@ -8,6 +8,7 @@ package ec.edu.ups.dao;
 import ec.edu.ups.idao.ITicketDao;
 
 import ec.edu.ups.modelo.Ticket;
+import ec.edu.ups.modelo.Vehiculo;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -16,10 +17,13 @@ import java.util.List;
 public class TicketDao implements ITicketDao {
 
     private List<Ticket> tickets;
+    private List<Ticket> salida;
     private int codigo;
 
     public TicketDao() {
         tickets = new ArrayList<>();
+        salida =new ArrayList<>(); 
+               
         this.codigo = 0;
     }
     
@@ -31,13 +35,12 @@ public class TicketDao implements ITicketDao {
     
     @Override
     public Ticket read(String placa) {
-        
-        for (Ticket t : tickets) {
-            if (t.getVehiculo().getPlaca().equals(placa)) {
-                return t;
-            }
+     for (Ticket t: tickets){
+         if (t.getVehiculo().getPlaca().equals(placa)){
+         return t;
+   
+         }
         }
-        
         return null;
         
     }
@@ -75,5 +78,25 @@ public class TicketDao implements ITicketDao {
     public int obtenerCodigo() {
         return codigo;
     }
-    
+
+    @Override
+    public Ticket buscarTicket(int numero) {
+        for (Ticket Tickets: tickets){
+          if(Tickets.getNumero()==numero){
+          return Tickets;
+          }
+        }
+        
+        return null;
+        
+    }
+
+    @Override
+    public void agregarSalida(Ticket ticket) {
+        salida.add(ticket);
+    }
+    public List<Ticket> ListaSalidas(){
+        
+        return salida;
+}
 }

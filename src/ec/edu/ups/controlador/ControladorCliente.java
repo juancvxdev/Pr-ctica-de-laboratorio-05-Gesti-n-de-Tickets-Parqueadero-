@@ -43,14 +43,14 @@ public class ControladorCliente {
       cliente= clienteDAO.read(cedula);
       clienteDAO.delete(cliente);
       }
-    public void buscarCliente(String cedula){
-    clienteDAO.read(cedula);
+    public Cliente buscarCliente(String placa){
+  cliente = clienteDAO.read(placa);
+    return cliente;
    }
      public void agregarVehiculo(String placa, String marca, String modelo){
      vehiculo = new Vehiculo(placa,marca, modelo);
     vehiculoDAO.create(vehiculo);
     cliente.agregarVehiculo(vehiculo);
-    clienteDAO.update(cliente);
  
     }
         
@@ -62,6 +62,8 @@ public class ControladorCliente {
     
    
     }
+    
+    
     public void eliminarVehiculo(String placa){
        vehiculo=vehiculoDAO.read(placa);
        vehiculoDAO.delete(vehiculo);
