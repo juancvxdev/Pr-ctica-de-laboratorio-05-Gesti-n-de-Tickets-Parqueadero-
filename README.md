@@ -13,7 +13,7 @@
 
 **1. Crear un repositorio en GitHub con el nombre “Práctica de laboratorio 05: Gestión de Tickets (Parqueadero)”.**
 
-![screan del respositorio](
+![screan del respositorio](https://github.com/Paul-Guapucal/Screens-Practica05/blob/master/ssRepositorio.jpg)
 
 **2. Desarrollar una aplicación que permita la gestión de Tickets de un parqueadero de vehículos según los requerimientos planteados en las instrucciones de la práctica.**
 
@@ -57,29 +57,31 @@
 
 [Clase VentanaPrincipal](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-05-Gesti-n-de-Tickets-Parqueadero-/blob/master/src/ec/edu/ups/vista/VentanaPrincipal.java)
 
-![Interfaz de la VentanaPrincipal](
+![Interfaz de la VentanaPrincipal](https://github.com/Paul-Guapucal/Screens-Practica05/blob/master/ssVentanaPrincipal.jpg)
 
 [Clase VentanaCliente](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-05-Gesti-n-de-Tickets-Parqueadero-/blob/master/src/ec/edu/ups/vista/VentanaCliente.java)
 
-![Interfaz de la VentanaCliente](
+![Interfaz de la VentanaCliente](https://github.com/Paul-Guapucal/Screens-Practica05/blob/master/ssVentanaCliente.jpg)
 
 [Clase VentanaVehiculo](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-05-Gesti-n-de-Tickets-Parqueadero-/blob/master/src/ec/edu/ups/vista/VentanaVehiculo.java)
 
-![Interfaz de la VentanaVehiculo](
+![Interfaz de la VentanaVehiculo](https://github.com/Paul-Guapucal/Screens-Practica05/blob/master/ssVentanaVehiculo.jpg)
 
 [Clase VentanaIngresoTicket](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-05-Gesti-n-de-Tickets-Parqueadero-/blob/master/src/ec/edu/ups/vista/VentanaIngresoTicket.java)
 
-![Interfaz de la VentanaIngresoTicket](
+![Interfaz de la VentanaIngresoTicket](https://github.com/Paul-Guapucal/Screens-Practica05/blob/master/ssVentanaIngresoTicket.jpg)
 
 [Clase VentanaSalida](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-05-Gesti-n-de-Tickets-Parqueadero-/blob/master/src/ec/edu/ups/vista/VentanaSalida.java)
 
-![Interfaz de la VentanaSalida](
+![Interfaz de la VentanaSalida](https://github.com/Paul-Guapucal/Screens-Practica05/blob/master/ssVentanaSalir.jpg)
 
 [Clase VentanaListar](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-05-Gesti-n-de-Tickets-Parqueadero-/blob/master/src/ec/edu/ups/vista/VentanaListar.java)
 
-![Interfaz de la VentanaListar](
+![Interfaz de la VentanaListar](https://github.com/Paul-Guapucal/Screens-Practica05/blob/master/ssVentanaListar.jpg)
 
 **3. Realizar varios commits en la herramienta GitHub que demuestren el desarrollo de la aplicación desde principio a fin. Los commits deben ser realizados por todos los integrantes del grupo.**
+
+![Commits realizados en la Practica](https://github.com/Paul-Guapucal/Screens-Practica05/blob/master/ssComits.jpg)
 
 **Resultados obtenidos de la Practica**
 
@@ -105,4 +107,4 @@
 
 **Firma de los estudiantes**
 
-![firma del estudiante](
+![firma del estudiante](https://github.com/Paul-Guapucal/Screens-Practica05/blob/master/ssFirmas.jpg)
