@@ -29,7 +29,7 @@
 
 [Clase ControladorVehiculo](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-05-Gesti-n-de-Tickets-Parqueadero-/blob/master/src/ec/edu/ups/controlador/ControladorVehiculo.java)
 
-*2.1.1 Clases del paquete DAO*
+*2.1.2 Clases del paquete DAO*
 
 [Clase ClienteDAO](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-05-Gesti-n-de-Tickets-Parqueadero-/blob/master/src/ec/edu/ups/dao/ClienteDao.java)
 
@@ -37,7 +37,7 @@
 
 [Clase VehiculoDAO](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-05-Gesti-n-de-Tickets-Parqueadero-/blob/master/src/ec/edu/ups/dao/VehiculoDao.java)
 
-*2.1.1 Clases del paquete IDAO*
+*2.1.3 Clases del paquete IDAO*
 
 [Clase IClienteDAO](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-05-Gesti-n-de-Tickets-Parqueadero-/blob/master/src/ec/edu/ups/idao/IClienteDao.java)
 
@@ -45,7 +45,7 @@
 
 [Clase IVehiculoDAO](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-05-Gesti-n-de-Tickets-Parqueadero-/blob/master/src/ec/edu/ups/idao/IVehiculoDao.java)
 
-*2.1.1 Clases del paquete modelo*
+*2.1.4 Clases del paquete modelo*
 
 [Clase Cliente](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-05-Gesti-n-de-Tickets-Parqueadero-/blob/master/src/ec/edu/ups/modelo/Cliente.java)
 
@@ -53,7 +53,7 @@
 
 [Clase Vehiculo](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-05-Gesti-n-de-Tickets-Parqueadero-/blob/master/src/ec/edu/ups/modelo/Vehiculo.java)
 
-*2.1.1 Clases del paquete vista*
+*2.1.5 Clases del paquete vista*
 
 [Clase VentanaPrincipal](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-05-Gesti-n-de-Tickets-Parqueadero-/blob/master/src/ec/edu/ups/vista/VentanaPrincipal.java)
 
