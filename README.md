@@ -45,7 +45,13 @@
 
 [Clase IVehiculoDAO](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-05-Gesti-n-de-Tickets-Parqueadero-/blob/master/src/ec/edu/ups/idao/IVehiculoDao.java)
 
-*2.1.4 Clases del paquete modelo*
+*2.1.4 Clases del paquete idioma*
+
+[Clase Property Español](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-05-Gesti-n-de-Tickets-Parqueadero-/blob/master/src/ec/edu/ups/idiomas/mensajes_es_EC.properties)
+
+[Clase Property Ingles](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-05-Gesti-n-de-Tickets-Parqueadero-/blob/master/src/ec/edu/ups/idiomas/mensajes_en_UK.properties)
+
+*2.1.5 Clases del paquete modelo*
 
 [Clase Cliente](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-05-Gesti-n-de-Tickets-Parqueadero-/blob/master/src/ec/edu/ups/modelo/Cliente.java)
 
@@ -53,7 +59,7 @@
 
 [Clase Vehiculo](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-05-Gesti-n-de-Tickets-Parqueadero-/blob/master/src/ec/edu/ups/modelo/Vehiculo.java)
 
-*2.1.5 Clases del paquete vista*
+*2.1.6 Clases del paquete vista*
 
 [Clase VentanaPrincipal](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-05-Gesti-n-de-Tickets-Parqueadero-/blob/master/src/ec/edu/ups/vista/VentanaPrincipal.java)
 
