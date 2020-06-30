@@ -14,7 +14,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -51,15 +57,15 @@ public class VentanaSalida extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        PanelSalida = new javax.swing.JPanel();
         lblCodigoSalida = new javax.swing.JLabel();
         txtCodigoSalida = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblSalida = new javax.swing.JTable();
-        btnRetirarVehiculo = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnSacarVehiculo = new javax.swing.JButton();
+        btnSALIR = new javax.swing.JButton();
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Salida del Vehiculo", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
+        PanelSalida.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Salida del Vehiculo", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
 
         lblCodigoSalida.setText("CODIGO:");
 
@@ -84,52 +90,56 @@ public class VentanaSalida extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tblSalida);
 
-        btnRetirarVehiculo.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        btnRetirarVehiculo.setText("Retirar Vehiculo");
-        btnRetirarVehiculo.addActionListener(new java.awt.event.ActionListener() {
+        btnSacarVehiculo.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        btnSacarVehiculo.setText("Retirar Vehiculo");
+        btnSacarVehiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRetirarVehiculoActionPerformed(evt);
+                btnSacarVehiculoActionPerformed(evt);
             }
         });
 
-        jButton1.setText("SALIR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnSALIR.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnSALIR.setText("SALIR");
+        btnSALIR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnSALIRActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout PanelSalidaLayout = new javax.swing.GroupLayout(PanelSalida);
+        PanelSalida.setLayout(PanelSalidaLayout);
+        PanelSalidaLayout.setHorizontalGroup(
+            PanelSalidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelSalidaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(PanelSalidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelSalidaLayout.createSequentialGroup()
                         .addComponent(lblCodigoSalida)
                         .addGap(18, 18, 18)
                         .addComponent(txtCodigoSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnRetirarVehiculo)
+                        .addComponent(btnSacarVehiculo)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)
+                        .addComponent(btnSALIR, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1252, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        PanelSalidaLayout.setVerticalGroup(
+            PanelSalidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelSalidaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCodigoSalida)
-                    .addComponent(txtCodigoSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRetirarVehiculo)
-                    .addComponent(jButton1))
+                .addGroup(PanelSalidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(PanelSalidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblCodigoSalida)
+                        .addComponent(txtCodigoSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSacarVehiculo))
+                    .addGroup(PanelSalidaLayout.createSequentialGroup()
+                        .addComponent(btnSALIR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(1, 1, 1)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -138,14 +148,14 @@ public class VentanaSalida extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(PanelSalida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(PanelSalida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -175,7 +185,7 @@ public class VentanaSalida extends javax.swing.JInternalFrame {
             }
         }
     }
-    private void btnRetirarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetirarVehiculoActionPerformed
+    private void btnSacarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacarVehiculoActionPerformed
 
         if (txtCodigoSalida.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "El campo no puede estar vacio");
@@ -198,11 +208,11 @@ public class VentanaSalida extends javax.swing.JInternalFrame {
 
         }
 
-    }//GEN-LAST:event_btnRetirarVehiculoActionPerformed
+    }//GEN-LAST:event_btnSacarVehiculoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnSALIRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSALIRActionPerformed
       this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnSALIRActionPerformed
     public void Limpiar() {
         txtCodigoSalida.setText("");
     }
@@ -215,12 +225,70 @@ public class VentanaSalida extends javax.swing.JInternalFrame {
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnRetirarVehiculo;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel PanelSalida;
+    private javax.swing.JButton btnSALIR;
+    private javax.swing.JButton btnSacarVehiculo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCodigoSalida;
     private javax.swing.JTable tblSalida;
     private javax.swing.JTextField txtCodigoSalida;
     // End of variables declaration//GEN-END:variables
+
+    public Ticket getTicket() {
+        return ticket;
+    }
+
+    public double getFraccion() {
+        return fraccion;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public ControladorCliente getControladorCliente() {
+        return controladorCliente;
+    }
+
+    public ControladorTicket getControladorTicket() {
+        return controladorTicket;
+    }
+
+    public ControladorVehiculo getControladorVehiculo() {
+        return controladorVehiculo;
+    }
+
+    public Date getFechaActual() {
+        return fechaActual;
+    }
+
+    public JPanel getPanelSalida() {
+        return PanelSalida;
+    }
+
+    public JButton getBtnSacarVehiculo() {
+        return btnSacarVehiculo;
+    }
+
+    public JButton getBtnSALIR() {
+        return btnSALIR;
+    }
+
+    public JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    public JLabel getLblCodigoSalida() {
+        return lblCodigoSalida;
+    }
+
+    public JTable getTblSalida() {
+        return tblSalida;
+    }
+
+    public JTextField getTxtCodigoSalida() {
+        return txtCodigoSalida;
+    }
+
+
 }
