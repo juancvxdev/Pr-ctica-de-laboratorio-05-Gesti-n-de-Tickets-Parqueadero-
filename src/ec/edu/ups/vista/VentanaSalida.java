@@ -8,10 +8,13 @@ package ec.edu.ups.vista;
 import ec.edu.ups.controlador.ControladorCliente;
 import ec.edu.ups.controlador.ControladorTicket;
 import ec.edu.ups.controlador.ControladorVehiculo;
-import ec.edu.ups.modelo.Cliente;
 import ec.edu.ups.modelo.Ticket;
-import ec.edu.ups.modelo.Vehiculo;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -19,16 +22,24 @@ import javax.swing.table.DefaultTableModel;
  * @author paul_
  */
 public class VentanaSalida extends javax.swing.JInternalFrame {
-    private Cliente cliente;
-    private Vehiculo vehiculo;
-   private ControladorCliente controladorCliente;
-   private ControladorTicket controladorTicket;
-   private ControladorVehiculo controladorVehiculo;
-    public VentanaSalida(ControladorCliente controladorCliente,ControladorTicket controladorTicket,ControladorVehiculo controladorVehiculo) {
-        initComponents();   this.controladorCliente=controladorCliente;
-        this.controladorTicket=controladorTicket;
-        this.controladorVehiculo=controladorVehiculo;
-       
+
+    private Ticket ticket;
+    private double fraccion;
+    private double total;
+    private ControladorCliente controladorCliente;
+    private ControladorTicket controladorTicket;
+    private ControladorVehiculo controladorVehiculo;
+    private Date fechaActual;
+
+    public VentanaSalida(ControladorCliente controladorCliente, ControladorTicket controladorTicket, ControladorVehiculo controladorVehiculo) throws ParseException {
+        initComponents();
+        this.controladorCliente = controladorCliente;
+        this.controladorTicket = controladorTicket;
+        this.controladorVehiculo = controladorVehiculo;
+        Calendar cal = Calendar.getInstance();
+        fechaActual = cal.getTime();
+    
+
     }
 
     /**
@@ -45,7 +56,8 @@ public class VentanaSalida extends javax.swing.JInternalFrame {
         txtCodigoSalida = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblSalida = new javax.swing.JTable();
-        btnSacarVehiculo = new javax.swing.JButton();
+        btnRetirarVehiculo = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Salida del Vehiculo", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
 
@@ -63,7 +75,7 @@ public class VentanaSalida extends javax.swing.JInternalFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -72,11 +84,18 @@ public class VentanaSalida extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tblSalida);
 
-        btnSacarVehiculo.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        btnSacarVehiculo.setText("Retirar Vehiculo");
-        btnSacarVehiculo.addActionListener(new java.awt.event.ActionListener() {
+        btnRetirarVehiculo.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        btnRetirarVehiculo.setText("Retirar Vehiculo");
+        btnRetirarVehiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSacarVehiculoActionPerformed(evt);
+                btnRetirarVehiculoActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("SALIR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -92,7 +111,9 @@ public class VentanaSalida extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(txtCodigoSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnSacarVehiculo)
+                        .addComponent(btnRetirarVehiculo)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1252, Short.MAX_VALUE))
                 .addContainerGap())
@@ -104,7 +125,8 @@ public class VentanaSalida extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCodigoSalida)
                     .addComponent(txtCodigoSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSacarVehiculo))
+                    .addComponent(btnRetirarVehiculo)
+                    .addComponent(jButton1))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -129,59 +151,72 @@ public class VentanaSalida extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+ public void cargartblSalida() {
+        DefaultTableModel modelo = (DefaultTableModel) tblSalida.getModel();
+        modelo.setRowCount(0);
 
-    private void btnSacarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacarVehiculoActionPerformed
-      
-        Ticket ticket;
-        double fraccion;
-          Date fechaActual = new Date();
-          Date fI;
-          Date FS;
-          double min1,min2,resta,total;
-          int dia1,hora1,mins1;
-          int dia2,hora2,mins2;
-          ticket = controladorTicket.buscaTicketActualizar(Integer.parseInt(txtCodigoSalida.getText()));
-          Ticket t = new Ticket();
-          t.setNumero(Integer.parseInt(txtCodigoSalida.getText()));
-          t.setFechaHoraSalida(fechaActual);
-          t.setFechaHoraIngreso(ticket.getFechaHoraIngreso());
-          
-          t.setVehiculo(ticket.getVehiculo());
-         fI=ticket.getFechaHoraIngreso();
-         FS=fechaActual;
-         dia1=fI.getDay()*1440;
-         hora1=fI.getHours()*60;
-         mins1=fI.getMinutes();
-         min1=dia1+hora1+mins1;
-          dia2=fI.getDay()*1440;
-         hora2=fI.getHours()*60;
-         mins2=fI.getMinutes();
-         min2=dia2+hora2+mins2;
-         resta=min2-min1;
-         
-         fraccion=resta/10;
-         t.setFraccion((int) fraccion);
-         total=fraccion*0.25;
-         t.setTotal(total);
-         
-         controladorTicket.agregarSalida(t);
-         controladorTicket.eliminarTicket(ticket);
-           DefaultTableModel modelo = (DefaultTableModel) tblSalida.getModel();
-     modelo.setRowCount(0);
-      
- vehiculo=controladorVehiculo.buscarVehiculo(ticket.getVehiculo().getPlaca());
-            cliente=controladorCliente.buscarCliente(ticket.getVehiculo().getPlaca());
-  for (Ticket ti: controladorTicket.ListarSalidas()){
-   Object[] rowData ={t.getNumero(),t.getFechaHoraIngreso(),t.getFechaHoraSalida(),cliente.getCedula(),
-      cliente.getNombre(),cliente.getDireccion(),cliente.getTelefono(),vehiculo.getMarca(),vehiculo.getPlaca(),vehiculo.getModelo(),t.getFraccion(),t.getTotal()};
-   modelo.addRow(rowData);
-   tblSalida.setModel(modelo);
-  }
-    }//GEN-LAST:event_btnSacarVehiculoActionPerformed
+        for (Ticket ticket : controladorTicket.ListarTickets()) {
+            if (ticket.isEstado() == false) {
+                Object[] rowData = {ticket.getNumero(),
+                    ticket.getFechaHoraIngreso(),
+                    ticket.getFechaHoraSalida(),
+                    ticket.getVehiculo().getCliente().getCedula(),
+                    ticket.getVehiculo().getCliente().getNombre(),
+                    ticket.getVehiculo().getCliente().getDireccion(),
+                    ticket.getVehiculo().getCliente().getTelefono(),
+                    ticket.getVehiculo().getMarca(),
+                    ticket.getVehiculo().getPlaca(),
+                    ticket.getVehiculo().getModelo(),
+                    ticket.getFraccion(),
+                    "$ " + ticket.getTotal()
+                };
+                modelo.addRow(rowData);
+                tblSalida.setModel(modelo);
+            }
+        }
+    }
+    private void btnRetirarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetirarVehiculoActionPerformed
 
+        if (txtCodigoSalida.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "El campo no puede estar vacio");
 
+        } else {
+            ticket = controladorTicket.buscarTicket(Integer.parseInt(txtCodigoSalida.getText()));
+            Ticket t = new Ticket();
+            if (ticket == null) {
+                JOptionPane.showMessageDialog(this, "El ticket no esta registrado");
+            } else {
+                
+                calcularValor();
+                controladorTicket.actualizarTicket(ticket.getNumero(), ticket.getFechaHoraIngreso(), fechaActual, total, ticket.getVehiculo(), false,fraccion);
+                JOptionPane.showMessageDialog(this, "El valor a pagar es: " + total);
+                cargartblSalida();
+                Limpiar();
+               
+
+            }
+
+        }
+
+    }//GEN-LAST:event_btnRetirarVehiculoActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+    public void Limpiar() {
+        txtCodigoSalida.setText("");
+    }
+    //GET TIME RECIBE TIEMPO EN ms 
+
+    public void calcularValor() {
+        double minutos =  (fechaActual.getTime() - ticket.getFechaHoraIngreso().getTime()) / 60000;
+        fraccion = minutos / 10;
+        total = minutos * 0.25;
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnSacarVehiculo;
+    private javax.swing.JButton btnRetirarVehiculo;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCodigoSalida;

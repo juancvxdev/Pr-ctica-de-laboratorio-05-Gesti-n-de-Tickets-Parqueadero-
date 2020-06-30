@@ -5,7 +5,6 @@
  */
 package ec.edu.ups.idao;
 
-
 import ec.edu.ups.modelo.Vehiculo;
 import java.util.List;
 
@@ -14,7 +13,7 @@ import java.util.List;
  * @author Juanc
  */
 public interface IVehiculoDao {
-    
+
     public void create(Vehiculo vehiculo);
 
     public Vehiculo read(String placa);
@@ -22,6 +21,6 @@ public interface IVehiculoDao {
     public void update(Vehiculo vehiculo);
 
     public void delete(Vehiculo vehiculo);
-    
+
     public List<Vehiculo> ListaVehiculos();
 }

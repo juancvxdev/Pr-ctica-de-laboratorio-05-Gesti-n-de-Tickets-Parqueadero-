@@ -7,6 +7,8 @@ package ec.edu.ups.vista;
 
 import ec.edu.ups.controlador.ControladorCliente;
 import ec.edu.ups.controlador.ControladorVehiculo;
+import ec.edu.ups.modelo.Cliente;
+import ec.edu.ups.modelo.Vehiculo;
 import java.text.ParseException;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
@@ -18,18 +20,24 @@ import javax.swing.JTextField;
  */
 public class VentanaVehiculo extends javax.swing.JInternalFrame {
 
-   private ControladorVehiculo controladorVehiculo;
-   private ControladorCliente controladorCliente;
-    public VentanaVehiculo(ControladorVehiculo controladorVehiculo , ControladorCliente controladorCliente) throws ParseException {
+    private ControladorVehiculo controladorVehiculo;
+    private ControladorCliente controladorCliente;
+    private VentanaCliente ventanaCliente;
+    private VentanaPrincipal ventanaPrincipal;
+
+    public VentanaVehiculo(ControladorVehiculo controladorVehiculo, ControladorCliente controladorCliente, VentanaPrincipal ventanaPrincipal) throws ParseException {
         initComponents();
-        
-        this.controladorCliente=controladorCliente;
-        this.controladorVehiculo=controladorVehiculo;
-        
-         txtPlaca.setFormatterFactory(
-         new javax.swing.text.DefaultFormatterFactory(
-          new javax.swing.text.MaskFormatter("***-####")
-         ));
+
+        this.controladorCliente = controladorCliente;
+        this.controladorVehiculo = controladorVehiculo;
+        this.ventanaPrincipal = ventanaPrincipal;
+        ventanaCliente = new VentanaCliente(this.controladorCliente, this.ventanaPrincipal, this);
+
+        txtPlaca.setFormatterFactory(
+                new javax.swing.text.DefaultFormatterFactory(
+                        new javax.swing.text.MaskFormatter("***-####")
+                ));
+        txtCedula.setEnabled(true);
     }
 
     /**
@@ -152,29 +160,54 @@ public class VentanaVehiculo extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearVehiculoActionPerformed
-       
-        controladorVehiculo.crearVehiculo(txtPlaca.getText(),txtMarca.getText(), txtModelo.getText());
-        controladorCliente.agregarVehiculo(txtPlaca.getText(),txtMarca.getText(), txtModelo.getText());
-         JOptionPane.showMessageDialog(this, "Vehiculo registrado correctamente");
-         Limpiar();
-         this.dispose();
+
+        if (txtCedula.getText().isEmpty() || txtMarca.getText().isEmpty() || txtModelo.getText().isEmpty() || txtPlaca.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Llene todos los campos");
+        } else {
+
+            Cliente cliente = controladorCliente.buscarCliente(txtCedula.getText());
+            if (cliente == null) {
+                int desicion = JOptionPane.showConfirmDialog(this, "Este cliente no existe, Desea crear uno nuevo?");
+                this.dispose();
+                if (desicion == JOptionPane.YES_OPTION) {
+                    ventanaPrincipal.getDesktopPane().add(ventanaCliente);
+                    ventanaCliente.setVisible(true);
+                    ventanaCliente.getTxtCedula().setText(txtCedula.getText());
+                    ventanaCliente.getTxtCedula().setEnabled(false);
+                } else if (desicion == JOptionPane.NO_OPTION || desicion == JOptionPane.CANCEL_OPTION) {
+                    Limpiar();
+
+                }
+
+            } else {
+
+                Vehiculo vehiculo = new Vehiculo(txtPlaca.getText(), txtMarca.getText(), txtModelo.getText(), cliente);
+                controladorVehiculo.crearVehiculo(vehiculo);
+                cliente.agregarVehiculo(vehiculo);
+
+                JOptionPane.showMessageDialog(this, "Vehiculo registrado correctamente");
+                Limpiar();
+                this.dispose();
+            }
+
+        }
+
     }//GEN-LAST:event_btnCrearVehiculoActionPerformed
 
     public JTextField getTxtCedula() {
         return txtCedula;
     }
-   
-    public void Limpiar(){
-    txtPlaca.setText("");
-    txtMarca.setText("");
-    txtModelo.setText("");
-    
+
+    public void Limpiar() {
+        txtPlaca.setText("");
+        txtMarca.setText("");
+        txtModelo.setText("");
+
     }
 
     public JFormattedTextField getTxtPlaca() {
         return txtPlaca;
     }
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCrearVehiculo;

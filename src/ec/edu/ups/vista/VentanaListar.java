@@ -5,17 +5,21 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorTicket;
+import ec.edu.ups.modelo.Ticket;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author paul_
  */
 public class VentanaListar extends javax.swing.JInternalFrame {
-
-    /**
-     * Creates new form VentanaListar
-     */
-    public VentanaListar() {
+    
+    private ControladorTicket controladorTicket;
+    public VentanaListar(ControladorTicket controladorTicket) {
         initComponents();
+        this.controladorTicket=controladorTicket;
+        
     }
 
     /**
@@ -31,6 +35,24 @@ public class VentanaListar extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
+
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lista de Vehiculos", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -45,7 +67,7 @@ public class VentanaListar extends javax.swing.JInternalFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -91,6 +113,31 @@ public class VentanaListar extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
+         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setRowCount(0);
+
+        for (Ticket ticket : controladorTicket.ListarTickets()) {
+            if (ticket.isEstado() == false) {
+                Object[] rowData = {ticket.getNumero(),
+                    ticket.getFechaHoraIngreso(),
+                    ticket.getFechaHoraSalida(),
+                    ticket.getVehiculo().getCliente().getCedula(),
+                    ticket.getVehiculo().getCliente().getNombre(),
+                    ticket.getVehiculo().getCliente().getDireccion(),
+                    ticket.getVehiculo().getCliente().getTelefono(),
+                    ticket.getVehiculo().getMarca(),
+                    ticket.getVehiculo().getPlaca(),
+                    ticket.getVehiculo().getModelo(),
+                    ticket.getFraccion(),
+                    "$ " + ticket.getTotal()
+                };
+                modelo.addRow(rowData);
+               jTable1.setModel(modelo);
+            }
+        }
+    
+    }//GEN-LAST:event_formInternalFrameActivated
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;

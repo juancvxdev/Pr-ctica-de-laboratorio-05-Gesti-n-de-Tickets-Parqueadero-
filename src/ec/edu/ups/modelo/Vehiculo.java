@@ -12,21 +12,23 @@ import java.util.Objects;
  * @author Juanc
  */
 public class Vehiculo {
-    
+
     private String placa;
     private String marca;
     private String modelo;
 
+    private Cliente cliente;
+
     public Vehiculo() {
     }
 
-    public Vehiculo(String placa, String marca, String modelo) {
+    public Vehiculo(String placa, String marca, String modelo, Cliente cliente) {
         this.placa = placa;
         this.marca = marca;
         this.modelo = modelo;
+        this.cliente = cliente;
     }
 
-    
     public String getPlaca() {
         return placa;
     }
@@ -49,6 +51,14 @@ public class Vehiculo {
 
     public void setModelo(String modelo) {
         this.modelo = modelo;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
     }
 
     @Override
@@ -80,7 +90,5 @@ public class Vehiculo {
     public String toString() {
         return "Vehiculo{" + "placa=" + placa + ", marca=" + marca + ", modelo=" + modelo + '}';
     }
-    
-    
-    
+
 }

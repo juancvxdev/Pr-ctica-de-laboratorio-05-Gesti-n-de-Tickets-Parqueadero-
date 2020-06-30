@@ -12,28 +12,32 @@ import java.util.Date;
  * @author Juanc
  */
 public class Ticket {
-    
+
     private int numero;
     private Date fechaHoraIngreso;
     private Date fechaHoraSalida;
+    private boolean estado;
     private double fraccion;
-    private Double total;
-    
+    private double total;
+
     private Vehiculo vehiculo;
 
     public Ticket() {
     }
 
-    public Ticket(int numero, Date fechaHoraIngreso, Date fechaHoraSalida, Double total, Vehiculo vehiculo) {
+    public Ticket(int numero, Date fechaHoraIngreso, Date fechaHoraSalida, Double total, Vehiculo vehiculo, Boolean estado,double raccion) {
         this.numero = numero;
         this.fechaHoraIngreso = fechaHoraIngreso;
         this.fechaHoraSalida = fechaHoraSalida;
         this.total = total;
-        this.vehiculo=vehiculo;
+        this.vehiculo = vehiculo;
+        this.estado = estado;
     }
 
-    
-    
+    public boolean isEstado() {
+        return estado;
+    }
+
     public int getNumero() {
         return numero;
     }
@@ -81,9 +85,10 @@ public class Ticket {
     public void setVehiculo(Vehiculo vehiculo) {
         this.vehiculo = vehiculo;
     }
-   public void calcularValor(){
-   
-   }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
 
     @Override
     public int hashCode() {
@@ -114,7 +119,5 @@ public class Ticket {
     public String toString() {
         return "Ticket{" + "numero=" + numero + ", fechaHoraIngreso=" + fechaHoraIngreso + ", fechaHoraSalida=" + fechaHoraSalida + ", total=" + total + '}';
     }
-    
-    
-    
+
 }

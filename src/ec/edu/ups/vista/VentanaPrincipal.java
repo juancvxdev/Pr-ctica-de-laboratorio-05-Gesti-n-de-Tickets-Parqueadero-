@@ -22,46 +22,40 @@ import javax.swing.JDesktopPane;
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
-    
     private VentanaVehiculo ventanaVehiculo;
     private VentanaCliente ventanaCliente;
     private VentanaIngresoTicket ventanaIngresoTicket;
     private VentanaSalida ventanaSalida;
     private VentanaListar ventanaListar;
-    
-    
-    private  ClienteDao clienteDAO;
-    private  VehiculoDao vehiculoDAO;
-    private  TicketDao ticketDAO;
-    
+
+    private ClienteDao clienteDAO;
+    private VehiculoDao vehiculoDAO;
+    private TicketDao ticketDAO;
+
     private ControladorCliente controladorCliente;
     private ControladorVehiculo controladorVehiculo;
     private ControladorTicket controladorTicket;
-    
+
     /**
      * Creates new form VentanaPrincipal
      */
     public VentanaPrincipal() throws ParseException {
-          initComponents();
+        initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
         clienteDAO = new ClienteDao();
         vehiculoDAO = new VehiculoDao();
         ticketDAO = new TicketDao();
-        
-        controladorCliente = new ControladorCliente(clienteDAO,vehiculoDAO);
+
+        controladorCliente = new ControladorCliente(clienteDAO, vehiculoDAO);
         controladorVehiculo = new ControladorVehiculo(vehiculoDAO);
         controladorTicket = new ControladorTicket(ticketDAO);
-        
-        ventanaVehiculo = new VentanaVehiculo (controladorVehiculo,controladorCliente);
-        ventanaCliente = new VentanaCliente(controladorCliente,this, ventanaVehiculo,null);
-        ventanaIngresoTicket = new VentanaIngresoTicket( controladorCliente,controladorTicket,controladorVehiculo,this);
-        ventanaSalida = new VentanaSalida(controladorCliente,controladorTicket,controladorVehiculo);
-        ventanaListar = new VentanaListar();
-        
-        
-        
-        
-      
+
+        ventanaVehiculo = new VentanaVehiculo(controladorVehiculo, controladorCliente, this);
+        ventanaCliente = new VentanaCliente(controladorCliente, this, ventanaVehiculo);
+        ventanaIngresoTicket = new VentanaIngresoTicket(controladorCliente, controladorTicket, controladorVehiculo, this);
+        ventanaSalida = new VentanaSalida(controladorCliente, controladorTicket, controladorVehiculo);
+        ventanaListar = new VentanaListar(controladorTicket);
+
     }
 
     /**
@@ -82,18 +76,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenu5 = new javax.swing.JMenu();
         desktopPane = new javax.swing.JDesktopPane();
         menuBar = new javax.swing.JMenuBar();
-        btnMenu = new javax.swing.JMenu();
+        btnRegistroVehiculo = new javax.swing.JMenu();
         btnIngresar = new javax.swing.JMenuItem();
+        btnRegistrarVehiculo = new javax.swing.JMenuItem();
         btnIngresoTicket = new javax.swing.JMenuItem();
         btnSalidaTicket = new javax.swing.JMenuItem();
         btnListaTickets = new javax.swing.JMenuItem();
         btnSalir = new javax.swing.JMenuItem();
-        btnEdit = new javax.swing.JMenu();
-        cutMenuItem = new javax.swing.JMenuItem();
-        copyMenuItem = new javax.swing.JMenuItem();
-        pasteMenuItem = new javax.swing.JMenuItem();
-        deleteMenuItem = new javax.swing.JMenuItem();
         btnIdioma = new javax.swing.JMenu();
+        btnESP = new javax.swing.JMenuItem();
+        btnENG = new javax.swing.JMenuItem();
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -110,40 +102,49 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuBar2.add(jMenu5);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.GridLayout());
+        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
         getContentPane().add(desktopPane);
 
-        btnMenu.setMnemonic('f');
-        btnMenu.setText("Menu");
+        btnRegistroVehiculo.setMnemonic('f');
+        btnRegistroVehiculo.setText("Menu");
 
         btnIngresar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
         btnIngresar.setMnemonic('o');
-        btnIngresar.setText("Ingreso Vehiculo");
+        btnIngresar.setText("Registro Cliente");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIngresarActionPerformed(evt);
             }
         });
-        btnMenu.add(btnIngresar);
+        btnRegistroVehiculo.add(btnIngresar);
+
+        btnRegistrarVehiculo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
+        btnRegistrarVehiculo.setText("Registro Vehiculo");
+        btnRegistrarVehiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarVehiculoActionPerformed(evt);
+            }
+        });
+        btnRegistroVehiculo.add(btnRegistrarVehiculo);
 
         btnIngresoTicket.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_MASK));
         btnIngresoTicket.setMnemonic('s');
-        btnIngresoTicket.setText("Ingreso Ticket");
+        btnIngresoTicket.setText("Ingresar Vehiculo");
         btnIngresoTicket.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIngresoTicketActionPerformed(evt);
             }
         });
-        btnMenu.add(btnIngresoTicket);
+        btnRegistroVehiculo.add(btnIngresoTicket);
 
         btnSalidaTicket.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
-        btnSalidaTicket.setText("Salida Ticket");
+        btnSalidaTicket.setText("Retirar Vehiculo");
         btnSalidaTicket.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalidaTicketActionPerformed(evt);
             }
         });
-        btnMenu.add(btnSalidaTicket);
+        btnRegistroVehiculo.add(btnSalidaTicket);
 
         btnListaTickets.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
         btnListaTickets.setMnemonic('a');
@@ -153,7 +154,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 btnListaTicketsActionPerformed(evt);
             }
         });
-        btnMenu.add(btnListaTickets);
+        btnRegistroVehiculo.add(btnListaTickets);
 
         btnSalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
         btnSalir.setMnemonic('x');
@@ -163,32 +164,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 btnSalirActionPerformed(evt);
             }
         });
-        btnMenu.add(btnSalir);
+        btnRegistroVehiculo.add(btnSalir);
 
-        menuBar.add(btnMenu);
-
-        btnEdit.setMnemonic('e');
-        btnEdit.setText("Editar");
-
-        cutMenuItem.setMnemonic('t');
-        cutMenuItem.setText("Cut");
-        btnEdit.add(cutMenuItem);
-
-        copyMenuItem.setMnemonic('y');
-        copyMenuItem.setText("Copy");
-        btnEdit.add(copyMenuItem);
-
-        pasteMenuItem.setMnemonic('p');
-        pasteMenuItem.setText("Paste");
-        btnEdit.add(pasteMenuItem);
-
-        deleteMenuItem.setMnemonic('d');
-        deleteMenuItem.setText("Delete");
-        btnEdit.add(deleteMenuItem);
-
-        menuBar.add(btnEdit);
+        menuBar.add(btnRegistroVehiculo);
 
         btnIdioma.setText("Idioma");
+
+        btnESP.setText("Español");
+        btnESP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnESPActionPerformed(evt);
+            }
+        });
+        btnIdioma.add(btnESP);
+
+        btnENG.setText("Ingles");
+        btnIdioma.add(btnENG);
+
         menuBar.add(btnIdioma);
 
         setJMenuBar(menuBar);
@@ -201,30 +193,45 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-       // desktopPane.add(ventanaVehiculo);
+
         desktopPane.add(ventanaCliente);
-       // ventanaVehiculo.setVisible(true);
+
         ventanaCliente.setVisible(true);
+        ventanaIngresoTicket.setVisible(false);
+         ventanaSalida.setVisible(false);
         
+
+
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnIngresoTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresoTicketActionPerformed
         desktopPane.add(ventanaIngresoTicket);
         ventanaIngresoTicket.setVisible(true);
-        
+ventanaSalida.setVisible(false);
     }//GEN-LAST:event_btnIngresoTicketActionPerformed
 
     private void btnSalidaTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalidaTicketActionPerformed
         desktopPane.add(ventanaSalida);
         ventanaSalida.setVisible(true);
-        
+         ventanaIngresoTicket.setVisible(false);
+
     }//GEN-LAST:event_btnSalidaTicketActionPerformed
 
+    private void btnRegistrarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarVehiculoActionPerformed
+        desktopPane.add(ventanaVehiculo);
+        ventanaVehiculo.setVisible(true);
+         ventanaIngresoTicket.setVisible(false);
+         ventanaSalida.setVisible(false);
+    }//GEN-LAST:event_btnRegistrarVehiculoActionPerformed
+
     private void btnListaTicketsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaTicketsActionPerformed
-        desktopPane.add(ventanaListar);
-        ventanaListar.setVisible(true);
-        
+   desktopPane.add(ventanaListar);
+   ventanaListar.setVisible(true);
     }//GEN-LAST:event_btnListaTicketsActionPerformed
+
+    private void btnESPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnESPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnESPActionPerformed
 
     /**
      * @param args the command line arguments
@@ -270,17 +277,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu btnEdit;
+    private javax.swing.JMenuItem btnENG;
+    private javax.swing.JMenuItem btnESP;
     private javax.swing.JMenu btnIdioma;
     private javax.swing.JMenuItem btnIngresar;
     private javax.swing.JMenuItem btnIngresoTicket;
     private javax.swing.JMenuItem btnListaTickets;
-    private javax.swing.JMenu btnMenu;
+    private javax.swing.JMenuItem btnRegistrarVehiculo;
+    private javax.swing.JMenu btnRegistroVehiculo;
     private javax.swing.JMenuItem btnSalidaTicket;
     private javax.swing.JMenuItem btnSalir;
-    private javax.swing.JMenuItem copyMenuItem;
-    private javax.swing.JMenuItem cutMenuItem;
-    private javax.swing.JMenuItem deleteMenuItem;
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -290,7 +296,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuBar menuBar;
-    private javax.swing.JMenuItem pasteMenuItem;
     // End of variables declaration//GEN-END:variables
 
 }

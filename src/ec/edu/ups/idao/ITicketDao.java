@@ -16,25 +16,17 @@ import java.util.List;
  */
 public interface ITicketDao {
 
- public void create(Ticket ticket);
+    public void create(Ticket ticket);
 
- public Ticket read(String placa);
+    public Ticket read(int numero);
 
- public void update(Ticket ticket);
+    public void update(Ticket ticket);
 
- public void delete(Ticket ticket);
-    
- public List<Ticket> ListaTickets();
- 
- public int obtenerCodigo();
- 
- public Ticket buscarTicket (int numro);
- 
- public void agregarSalida(Ticket ticket);
- 
- public List <Ticket> ListaSalidas();
-         
-    
+    public void delete(Ticket ticket);
+
+    public List<Ticket> ListaTickets();
+
+    public int obtenerCodigo();
+
+    public Ticket readPlaca(String placa);
 }
-
-

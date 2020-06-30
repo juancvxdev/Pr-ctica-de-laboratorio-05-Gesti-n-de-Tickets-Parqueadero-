@@ -6,31 +6,31 @@
 package ec.edu.ups.vista;
 
 import ec.edu.ups.controlador.ControladorCliente;
+import ec.edu.ups.modelo.Cliente;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
  * @author paul_
  */
 public class VentanaCliente extends javax.swing.JInternalFrame {
-   private VentanaVehiculo ventanaVehiculo;
-   private VentanaPrincipal ventanaPrincipal;
-   private ControladorCliente controladorCliente;
-   private String cedula;
-   private String placa;
-    public VentanaCliente(ControladorCliente controladorCliente,VentanaPrincipal ventanaPrincipal, VentanaVehiculo ventanaVehiculo,String placa) {
+
+    private VentanaVehiculo ventanaVehiculo;
+    private VentanaPrincipal ventanaPrincipal;
+    private ControladorCliente controladorCliente;
+    private String cedula;
+    private String placa;
+
+    public VentanaCliente(ControladorCliente controladorCliente, VentanaPrincipal ventanaPrincipal, VentanaVehiculo ventanaVehiculo) {
         initComponents();
-      
-        this.ventanaPrincipal=ventanaPrincipal;
-        this.controladorCliente=controladorCliente;
-        this.ventanaVehiculo=ventanaVehiculo;
-        this.placa=placa;
+
+        this.ventanaPrincipal = ventanaPrincipal;
+        this.controladorCliente = controladorCliente;
+        this.ventanaVehiculo = ventanaVehiculo;
+        this.placa = placa;
+        txtCedula.setEnabled(true);
     }
-
- 
-    
-
- 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -145,23 +145,47 @@ public class VentanaCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearClienteActionPerformed
-        ventanaPrincipal.getDesktopPane().add(ventanaVehiculo);
-        cedula=txtCedula.getText();
-        controladorCliente.registrarCliente(cedula, txtNombre.getText(), txtDireccion.getText(), txtTelefono.getText());
-        ventanaVehiculo.getTxtCedula().setText(cedula);
-        ventanaVehiculo.getTxtPlaca().setValue(placa);
-        ventanaVehiculo.setVisible(true);
-        Limpiar();
-        this.dispose();
-        
-         
+        int desicion;
+        cedula = txtCedula.getText();
+        if (txtCedula.getText().isEmpty() || txtNombre.getText().isEmpty() || txtDireccion.getText().isEmpty() || txtTelefono.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Llene todos los campos");
+        } else {
+            controladorCliente.registrarCliente(cedula, txtNombre.getText(), txtDireccion.getText(), txtTelefono.getText());
+            JOptionPane.showMessageDialog(this, "Registro de cliente existoso");
+            Limpiar();
+            Cliente cliente = controladorCliente.buscarCliente(cedula);
+            if (cliente.ListarVehiculos().isEmpty()) {
+                desicion = JOptionPane.showConfirmDialog(this, "Desea registrar un vehiculo a este cliente?");
+            } else {
+                desicion = JOptionPane.showConfirmDialog(this, "Desea registrar otro vehiculo a este cliente?");
+            }
+
+            if (desicion == JOptionPane.YES_OPTION) {
+
+                ventanaPrincipal.getDesktopPane().add(ventanaVehiculo);
+                ventanaVehiculo.getTxtCedula().setText(cedula);
+                ventanaVehiculo.getTxtCedula().setEnabled(false);
+                Limpiar();
+                this.dispose();
+                ventanaVehiculo.setVisible(true);
+            } else if (desicion == JOptionPane.NO_OPTION) {
+                Limpiar();
+                this.dispose();
+            }
+
+        }
+
     }//GEN-LAST:event_btnCrearClienteActionPerformed
-public void Limpiar(){
-txtCedula.setText("");
-txtNombre.setText("");
-txtDireccion.setText("");
-txtTelefono.setText("");
-}
+    public void Limpiar() {
+        txtCedula.setText("");
+        txtNombre.setText("");
+        txtDireccion.setText("");
+        txtTelefono.setText("");
+    }
+
+    public JTextField getTxtCedula() {
+        return txtCedula;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCrearCliente;

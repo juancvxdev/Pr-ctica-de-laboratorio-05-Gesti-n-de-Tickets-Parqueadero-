@@ -16,29 +16,31 @@ import java.util.List;
  *
  * @author Juanc
  */
-public class ClienteDao implements IClienteDao { 
+public class ClienteDao implements IClienteDao {
+
     private List<Cliente> clientes;
     Vehiculo vehiculo;
+
     public ClienteDao() {
         clientes = new ArrayList<>();
     }
-    
+
     @Override
     public void create(Cliente cliente) {
         clientes.add(cliente);
     }
 
     @Override
-    public Cliente read(String placa) {
-      for(Cliente  cliente : clientes){
-      if(cliente.buscarVehiculo(placa)!=null){
-        return cliente;
-      
-      }
-      }
-      
+    public Cliente read(String cedula) {
+        for (Cliente cliente : clientes) {
+            if (cliente.getCedula().equals(cedula)) {
+                return cliente;
+
+            }
+        }
+
         return null;
-        
+
     }
 
     @Override
@@ -46,7 +48,7 @@ public class ClienteDao implements IClienteDao {
         for (int i = 0; i < clientes.size(); i++) {
             Cliente c = clientes.get(i);
             if (c.getCedula().equals(cliente.getCedula())) {
-               clientes.set(i, cliente);
+                clientes.set(i, cliente);
                 break;
             }
         }
@@ -54,7 +56,7 @@ public class ClienteDao implements IClienteDao {
 
     @Override
     public void delete(Cliente cliente) {
-         Iterator<Cliente> it = clientes.iterator();
+        Iterator<Cliente> it = clientes.iterator();
         while (it.hasNext()) {
             Cliente c = it.next();
             if (c.getCedula().equals(cliente.getCedula())) {
@@ -66,9 +68,9 @@ public class ClienteDao implements IClienteDao {
 
     @Override
     public List<Cliente> ListaClientes() {
-        
+
         return clientes;
-        
+
     }
-    
+
 }

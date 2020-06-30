@@ -13,6 +13,7 @@ import ec.edu.ups.modelo.Ticket;
 import ec.edu.ups.modelo.Vehiculo;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -22,59 +23,62 @@ import javax.swing.table.DefaultTableModel;
  * @author paul_
  */
 public class VentanaIngresoTicket extends javax.swing.JInternalFrame {
-     //private Vehiculo vehiculo;
-     private VentanaPrincipal ventanaPrincipal;
-     private VentanaVehiculo ventanaVehiculo;
-  
-    private ControladorCliente controladorCliente;
-   private ControladorTicket controladorTicket;
-   private ControladorVehiculo controladorVehiculo;
-   
-   private VentanaCliente ventanaCliente;
-   
-  private Vehiculo vehiculo;
-  private Cliente cliente;
-  private Ticket ticket;
-    public VentanaIngresoTicket(ControladorCliente controladorCliente,ControladorTicket controladorTicket,ControladorVehiculo controladorVehiculo, VentanaPrincipal ventanaPrincipal) throws ParseException {
-        initComponents();
-             
-        this.controladorCliente=controladorCliente;
-        this.controladorTicket=controladorTicket;
-        this.controladorVehiculo=controladorVehiculo;
-         this.ventanaPrincipal=ventanaPrincipal;
-         ventanaVehiculo=new VentanaVehiculo(controladorVehiculo,controladorCliente);
-             
-        ventanaCliente= new VentanaCliente(this.controladorCliente,this.ventanaPrincipal,this.ventanaVehiculo,txtValidarPlaca.getText());
-           
-      txtValidarPlaca.setFormatterFactory(
-         new javax.swing.text.DefaultFormatterFactory(
-          new javax.swing.text.MaskFormatter("***-####")
-                 
-                 
-         ));  
-      
-      
-       
-    }
-   
-    public void cargartblTickets(){ 
-        
-       
-     DefaultTableModel modelo = (DefaultTableModel) tblIngresoTickets.getModel();
-     modelo.setRowCount(0);
+    //private Vehiculo vehiculo;
 
-  for (Ticket ticket: controladorTicket.ListarTickets()){
-  Object[] rowData ={ticket.getNumero(),ticket.getFechaHoraIngreso(),vehiculo.getPlaca(),vehiculo.getMarca(),
-      vehiculo.getModelo(),cliente.getCedula(),cliente.getNombre(),cliente.getDireccion(),cliente.getTelefono()};
-   modelo.addRow(rowData);
-   tblIngresoTickets.setModel(modelo);
-  }
-    
+    private VentanaPrincipal ventanaPrincipal;
+    private VentanaVehiculo ventanaVehiculo;
+
+    private ControladorCliente controladorCliente;
+    private ControladorTicket controladorTicket;
+    private ControladorVehiculo controladorVehiculo;
+
+    private VentanaCliente ventanaCliente;
+
+    public VentanaIngresoTicket(ControladorCliente controladorCliente, ControladorTicket controladorTicket, ControladorVehiculo controladorVehiculo, VentanaPrincipal ventanaPrincipal) throws ParseException {
+        initComponents();
+
+        this.controladorCliente = controladorCliente;
+        this.controladorTicket = controladorTicket;
+        this.controladorVehiculo = controladorVehiculo;
+        this.ventanaPrincipal = ventanaPrincipal;
+        ventanaVehiculo = new VentanaVehiculo(controladorVehiculo, controladorCliente, this.ventanaPrincipal);
+
+        ventanaCliente = new VentanaCliente(this.controladorCliente, this.ventanaPrincipal, this.ventanaVehiculo);
+        txtValidarPlaca.setFormatterFactory(
+                new javax.swing.text.DefaultFormatterFactory(
+                        new javax.swing.text.MaskFormatter("***-####")
+                ));
+
     }
-    public void Limpiar(){
-        txtValidarPlaca.setText("");
-        
+
+    public void cargartblTickets() {
+
+        DefaultTableModel modelo = (DefaultTableModel) tblIngresoTickets.getModel();
+        modelo.setRowCount(0);
+
+        for (Ticket ticket : controladorTicket.ListarTickets()) {
+            if (ticket.isEstado() == true) {
+                Object[] rowData = {ticket.getNumero(),
+                    ticket.getFechaHoraIngreso(),
+                    ticket.getVehiculo().getPlaca(),
+                    ticket.getVehiculo().getMarca(),
+                    ticket.getVehiculo().getModelo(),
+                    ticket.getVehiculo().getCliente().getCedula(),
+                    ticket.getVehiculo().getCliente().getNombre(),
+                    ticket.getVehiculo().getCliente().getDireccion(),
+                    ticket.getVehiculo().getCliente().getTelefono()};
+                modelo.addRow(rowData);
+                tblIngresoTickets.setModel(modelo);
+            }
+        }
+
     }
+
+    public void Limpiar() {
+        txtValidarPlaca.setValue("");
+
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -143,15 +147,16 @@ public class VentanaIngresoTicket extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtValidarPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(btnAsociar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtValidarPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(btnAsociar)
+                        .addGap(0, 1116, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,14 +168,14 @@ public class VentanaIngresoTicket extends javax.swing.JInternalFrame {
                     .addComponent(btnAsociar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -185,41 +190,52 @@ public class VentanaIngresoTicket extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-   
+
     private void btnAsociarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsociarActionPerformed
-      Date fechaActual = new Date();
-       vehiculo=controladorVehiculo.buscarVehiculo(txtValidarPlaca.getText());
-            cliente=controladorCliente.buscarCliente(txtValidarPlaca.getText());
-            ticket=controladorTicket.buscarTicket(txtValidarPlaca.getText());
-      
-        controladorTicket.crearTicket(controladorTicket.obtenerSiguienteCodigo(),fechaActual , null, null, vehiculo);
-         cargartblTickets();
-       
- 
-        
-      
-         
-         
-      //if (cliente==null && vehiculo==null){
-          
-             /*int desicion =JOptionPane.showConfirmDialog(this,"No existe un vehiculo registrado con placa "+txtValidarPlaca.getText()+" Desea registrar uno nuevo?");
-  if(desicion==JOptionPane.YES_OPTION){
-      ventanaPrincipal.getDesktopPane().add(ventanaCliente);
-      ventanaCliente.setVisible(true);
-        } else if(desicion==JOptionPane.NO_OPTION)
-  Limpiar();
-  }
-        }else{
-        
-        }*/
-   
-    
+
+        Calendar cal = Calendar.getInstance();
+        Date fechaActual = cal.getTime();
+        int desicion;
+        if (txtValidarPlaca.getText().length() == 1) {
+            JOptionPane.showMessageDialog(this, "El campo no puede estar vacio");
+
+        } else {
+            Vehiculo vehiculo = controladorVehiculo.buscarVehiculo(txtValidarPlaca.getText());
+
+            if (vehiculo == null) {
+                desicion = JOptionPane.showConfirmDialog(this, "No existe un vehiculo registrado con placa "
+                        + txtValidarPlaca.getText() + " Desea registrar uno nuevo?");
+                if (desicion == JOptionPane.YES_OPTION) {
+                    ventanaPrincipal.getDesktopPane().add(ventanaVehiculo);
+                    ventanaVehiculo.getTxtPlaca().setText(txtValidarPlaca.getText());
+                    ventanaVehiculo.getTxtPlaca().setEnabled(false);
+                    this.dispose();
+                    ventanaVehiculo.setVisible(true);
+                    
+
+                } else {
+                    Limpiar();
+                }
+
+            } else {
+
+                controladorTicket.crearTicket(controladorTicket.obtenerSiguienteCodigo(), fechaActual, null, 0.0, vehiculo, true,0.0);
+                JOptionPane.showMessageDialog(this, "Registro de ticket exitoso");
+                cargartblTickets();
+            }
+
+        }
+
     }//GEN-LAST:event_btnAsociarActionPerformed
 
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
-        //cargartblTickets();
+        if(controladorTicket.ListarTickets().isEmpty()){
+      //
+        }else{
+         cargartblTickets();
+        }
+       
     }//GEN-LAST:event_formInternalFrameActivated
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAsociar;

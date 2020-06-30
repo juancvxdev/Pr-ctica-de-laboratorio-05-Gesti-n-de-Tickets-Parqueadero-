@@ -17,34 +17,32 @@ import java.util.List;
 public class TicketDao implements ITicketDao {
 
     private List<Ticket> tickets;
-    private List<Ticket> salida;
     private int codigo;
 
     public TicketDao() {
         tickets = new ArrayList<>();
-        salida =new ArrayList<>(); 
-               
+
         this.codigo = 0;
     }
-    
+
     @Override
     public void create(Ticket ticket) {
         ticket.setNumero(++codigo);
         tickets.add(ticket);
     }
-    
+
     @Override
-    public Ticket read(String placa) {
-     for (Ticket t: tickets){
-         if (t.getVehiculo().getPlaca().equals(placa)){
-         return t;
-   
-         }
+    public Ticket read(int numero) {
+        for (Ticket t : tickets) {
+            if (t.getNumero() == numero) {
+                return t;
+
+            }
         }
         return null;
-        
+
     }
-    
+
     @Override
     public void update(Ticket ticket) {
         for (int i = 0; i < tickets.size(); i++) {
@@ -55,7 +53,7 @@ public class TicketDao implements ITicketDao {
             }
         }
     }
-    
+
     @Override
     public void delete(Ticket ticket) {
         Iterator<Ticket> it = tickets.iterator();
@@ -67,36 +65,27 @@ public class TicketDao implements ITicketDao {
             }
         }
     }
-    
+
     @Override
     public List<Ticket> ListaTickets() {
         return tickets;
-        
+
     }
-    
+
     @Override
     public int obtenerCodigo() {
         return codigo;
     }
 
     @Override
-    public Ticket buscarTicket(int numero) {
-        for (Ticket Tickets: tickets){
-          if(Tickets.getNumero()==numero){
-          return Tickets;
-          }
+    public Ticket readPlaca(String placa) {
+        for (Ticket t : tickets) {
+            if (t.getVehiculo().getPlaca().equals(placa)) {
+                return t;
+
+            }
         }
-        
         return null;
-        
     }
 
-    @Override
-    public void agregarSalida(Ticket ticket) {
-        salida.add(ticket);
-    }
-    public List<Ticket> ListaSalidas(){
-        
-        return salida;
-}
 }

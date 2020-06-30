@@ -6,6 +6,7 @@
 package ec.edu.ups.controlador;
 
 import ec.edu.ups.idao.IVehiculoDao;
+import ec.edu.ups.modelo.Cliente;
 import ec.edu.ups.modelo.Vehiculo;
 
 /**
@@ -13,32 +14,31 @@ import ec.edu.ups.modelo.Vehiculo;
  * @author Juanc
  */
 public class ControladorVehiculo {
-    
-    private Vehiculo vehiculo;
+
     private IVehiculoDao vehiculoDAO;
 
-    public ControladorVehiculo( IVehiculoDao vehiculoDAO) {
+    public ControladorVehiculo(IVehiculoDao vehiculoDAO) {
         this.vehiculoDAO = vehiculoDAO;
     }
-    
-    public void crearVehiculo(String placa, String marca, String modelo){
-        vehiculo= new Vehiculo(placa,marca,modelo);
-       vehiculoDAO.create(vehiculo);
+
+    public void crearVehiculo(Vehiculo vehiculo) {
+
+        vehiculoDAO.create(vehiculo);
     }
-    
-    public void actualizarVehiculo(String placa, String marca, String modelo){
-     vehiculo= new Vehiculo(placa,marca,modelo);
-     vehiculoDAO.update(vehiculo);
+
+    public void actualizarVehiculo(Vehiculo vehiculo) {
+
+        vehiculoDAO.update(vehiculo);
     }
-    public Vehiculo buscarVehiculo(String placa){
-    vehiculo=vehiculoDAO.read(placa);
+
+    public Vehiculo buscarVehiculo(String placa) {
+        Vehiculo vehiculo = vehiculoDAO.read(placa);
         return vehiculo;
     }
-    public void eliminarVehiculo(String placa){
-        vehiculo=vehiculoDAO.read(placa);
+
+    public void eliminarVehiculo(String placa) {
+        Vehiculo vehiculo = vehiculoDAO.read(placa);
         vehiculoDAO.delete(vehiculo);
     }
-    
-     
-    
+
 }

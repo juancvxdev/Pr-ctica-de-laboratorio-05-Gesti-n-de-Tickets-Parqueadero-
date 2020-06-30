@@ -12,60 +12,59 @@ import ec.edu.ups.modelo.Vehiculo;
 import java.util.Date;
 import java.util.List;
 
-
 /**
  *
  * @author Juanc
  */
 public class ControladorTicket {
+
     private Ticket ticket;
     private ITicketDao ticketDAO;
 
     public ControladorTicket(TicketDao ticketDAO) {
         this.ticketDAO = ticketDAO;
     }
-    
-    public void crearTicket(int numero, Date fechaHoraIngreso, Date fechaHoraSalida, Double total, Vehiculo vehiculo){
-        ticket= new Ticket( numero, fechaHoraIngreso, fechaHoraSalida, total, vehiculo);
-        
+
+    public void crearTicket(int numero, Date fechaHoraIngreso, Date fechaHoraSalida, Double total, Vehiculo vehiculo, Boolean estado,double fraccion) {
+        ticket = new Ticket(numero, fechaHoraIngreso, fechaHoraSalida, total, vehiculo, estado, fraccion);
+
         ticketDAO.create(ticket);
     }
-    public Ticket buscarTicket(String placa){
-   
-    ticket =ticketDAO.read(placa);
-    return ticket;
-    }
-   
-    public void agregarVehiculo(){
-    
-    
-    }
-  public List<Ticket> ListarTickets(){
-        return ticketDAO.ListaTickets();
-   
-   }
-        public int obtenerSiguienteCodigo(){
-        int codigo = ticketDAO.obtenerCodigo();
-        
-        return codigo;
-        
-        
-}
-        public Ticket buscaTicketActualizar(int numero){
-            
-            ticket=ticketDAO.buscarTicket(numero);
+
+    public Ticket buscarTicket(int numero) {
+
+        ticket = ticketDAO.read(numero);
         return ticket;
-        
-        }
-        public void agregarSalida(Ticket ticket){
-        ticketDAO.agregarSalida(ticket);
-        }
-        public void eliminarTicket(Ticket ticket){
+    }
+
+    public Ticket buscarTicketPlaca(String placa) {
+
+        ticket = ticketDAO.readPlaca(placa);
+
+        return ticket;
+
+    }
+
+    public void actualizarTicket(int numero, Date fechaHoraIngreso, Date fechaHoraSalida, Double total, Vehiculo vehiculo, Boolean estado,double fraccion) {
+        ticket = new Ticket(numero, fechaHoraIngreso, fechaHoraSalida, total, vehiculo, estado,fraccion);
+        ticketDAO.update(ticket);
+    }
+
+    public void eliminarTicket(int numero) {
+        ticket = ticketDAO.read(numero);
         ticketDAO.delete(ticket);
-        }
-        
-        public List <Ticket> ListarSalidas(){
-        return ticketDAO.ListaSalidas();
-        
-        }
+    }
+
+    public List<Ticket> ListarTickets() {
+        return ticketDAO.ListaTickets();
+
+    }
+
+    public int obtenerSiguienteCodigo() {
+        int codigo = ticketDAO.obtenerCodigo();
+
+        return codigo;
+
+    }
+
 }
