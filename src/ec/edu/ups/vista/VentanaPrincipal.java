@@ -103,8 +103,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ventanaListar.getPanelLista().setBorder(javax.swing.BorderFactory.createTitledBorder(null, mensajes.getString("PanelLista"),
                 javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP,
                 new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(0, 0, 0)));
-        ventanaListar.getBtnIngresoCedula().setText(mensajes.getString("btnIngresoCedula"));
-        ventanaListar.getBtnIngresoPlaca().setText(mensajes.getString("btnIngresoPlaca"));
+        
         
         
     }

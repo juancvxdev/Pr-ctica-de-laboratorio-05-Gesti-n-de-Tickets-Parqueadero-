@@ -30,7 +30,7 @@ import javax.swing.table.DefaultTableModel;
 public class VentanaSalida extends javax.swing.JInternalFrame {
 
     private Ticket ticket;
-    private double fraccion;
+    private int fraccion;
     private double total;
     private ControladorCliente controladorCliente;
     private ControladorTicket controladorTicket;
@@ -137,9 +137,8 @@ public class VentanaSalida extends javax.swing.JInternalFrame {
                     .addGroup(PanelSalidaLayout.createSequentialGroup()
                         .addComponent(btnSALIR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(1, 1, 1)))
-                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -219,9 +218,15 @@ public class VentanaSalida extends javax.swing.JInternalFrame {
     //GET TIME RECIBE TIEMPO EN ms 
 
     public void calcularValor() {
-        double minutos =  (fechaActual.getTime() - ticket.getFechaHoraIngreso().getTime()) / 60000;
-        fraccion = minutos / 10;
-        total = minutos * 0.25;
+        double minutos =  ( ticket.getFechaHoraIngreso().getTime()-fechaActual.getTime()) / 60000;
+        fraccion = (int) (minutos / 10);
+        if(fraccion<1){
+        total=0.25;
+        fraccion=1;
+        }else{
+        total = fraccion * 0.25;
+        }
+       
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

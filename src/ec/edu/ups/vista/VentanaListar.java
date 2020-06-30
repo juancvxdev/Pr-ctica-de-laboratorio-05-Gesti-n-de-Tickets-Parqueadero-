@@ -7,6 +7,8 @@ package ec.edu.ups.vista;
 
 import ec.edu.ups.controlador.ControladorTicket;
 import ec.edu.ups.modelo.Ticket;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -39,9 +41,10 @@ public class VentanaListar extends javax.swing.JInternalFrame {
         PanelLista = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblLista = new javax.swing.JTable();
-        btnIngresoPlaca = new javax.swing.JRadioButton();
-        btnIngresoCedula = new javax.swing.JRadioButton();
         txtListar = new javax.swing.JTextField();
+        cbxParametro = new javax.swing.JComboBox<>();
+        btnBuscar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
@@ -84,12 +87,19 @@ public class VentanaListar extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tblLista);
 
-        btnIngresoPlaca.setText("Placa");
+        cbxParametro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--SELECCIONE para Listar--", "Cedula", "Placa" }));
 
-        btnIngresoCedula.setText("Cedula");
-        btnIngresoCedula.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar.setText("BUSCAR");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIngresoCedulaActionPerformed(evt);
+                btnBuscarActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("SALIR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -104,26 +114,25 @@ public class VentanaListar extends javax.swing.JInternalFrame {
                     .addGroup(PanelListaLayout.createSequentialGroup()
                         .addComponent(txtListar, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(PanelListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnIngresoPlaca)
-                            .addComponent(btnIngresoCedula))))
+                        .addComponent(cbxParametro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnBuscar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         PanelListaLayout.setVerticalGroup(
             PanelListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelListaLayout.createSequentialGroup()
-                .addGroup(PanelListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelListaLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnIngresoCedula)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnIngresoPlaca))
-                    .addGroup(PanelListaLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(txtListar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(19, 19, 19)
+                .addGroup(PanelListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtListar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxParametro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar)
+                    .addComponent(jButton1))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -147,18 +156,133 @@ public class VentanaListar extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
-       
+    DefaultTableModel modelo = (DefaultTableModel) tblLista.getModel();
+        modelo.setRowCount(0);
+try {
+        for (Ticket ticket : controladorTicket.ListarTickets()) {
+            if (ticket.isEstado() == false) {
+                Object[] rowData = {ticket.getNumero(),
+                    ticket.getFechaHoraIngreso(),
+                    ticket.getFechaHoraSalida(),
+                    ticket.getVehiculo().getMarca(),
+                    ticket.getVehiculo().getPlaca(),
+                    ticket.getVehiculo().getModelo(),
+                     ticket.getVehiculo().getCliente().getCedula(),
+                    ticket.getVehiculo().getCliente().getNombre(),
+                    ticket.getVehiculo().getCliente().getDireccion(),
+                    ticket.getVehiculo().getCliente().getTelefono(),
+                     "$ " + ticket.getTotal(),
+                    ticket.getFraccion()
+                   
+                };
+                modelo.addRow(rowData);
+                tblLista.setModel(modelo);
+            }
+        }
     
+     
+}catch (Exception e) {
+JOptionPane.showMessageDialog(null, "La lista se encuentra vacia ");
+}
+
+ 
+
     }//GEN-LAST:event_formInternalFrameActivated
 
-    private void btnIngresoCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresoCedulaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnIngresoCedulaActionPerformed
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+       DefaultTableModel modelo = (DefaultTableModel) tblLista.getModel();
+        modelo.setRowCount(0);
+        String parametro=txtListar.getText();
 
+if( (cbxParametro.getSelectedItem().equals("Cedula"))){
+    Limpiar();
+    try {
+        for (Ticket ticket : controladorTicket.ListarTickets()) {
+            if (ticket.isEstado() == false) {
+                if(ticket.getVehiculo().getCliente().getCedula().equals(parametro)){
+                    Object[] rowData = {ticket.getNumero(),
+                    ticket.getFechaHoraIngreso(),
+                    ticket.getFechaHoraSalida(),
+                    ticket.getVehiculo().getMarca(),
+                    ticket.getVehiculo().getPlaca(),
+                    ticket.getVehiculo().getModelo(),
+                     ticket.getVehiculo().getCliente().getCedula(),
+                    ticket.getVehiculo().getCliente().getNombre(),
+                    ticket.getVehiculo().getCliente().getDireccion(),
+                    ticket.getVehiculo().getCliente().getTelefono(),
+                     "$ " + ticket.getTotal(),
+                    ticket.getFraccion()
+                   
+                };
+                modelo.addRow(rowData);
+                tblLista.setModel(modelo);
+                }
+                
+            }
+        }
+    
+     
+}catch (Exception e) {
+JOptionPane.showMessageDialog(null, "La lista se encuentra vacia ");
+}
+
+}else if(cbxParametro.getSelectedItem().equals("Placa")){
+ Limpiar();
+ try {
+        for (Ticket ticket : controladorTicket.ListarTickets()) {
+            if (ticket.isEstado() == false) {
+                if(ticket.getVehiculo().getPlaca().equals(parametro)){
+                    Object[] rowData = {ticket.getNumero(),
+                    ticket.getFechaHoraIngreso(),
+                    ticket.getFechaHoraSalida(),
+                    ticket.getVehiculo().getMarca(),
+                    ticket.getVehiculo().getPlaca(),
+                    ticket.getVehiculo().getModelo(),
+                     ticket.getVehiculo().getCliente().getCedula(),
+                    ticket.getVehiculo().getCliente().getNombre(),
+                    ticket.getVehiculo().getCliente().getDireccion(),
+                    ticket.getVehiculo().getCliente().getTelefono(),
+                     "$ " + ticket.getTotal(),
+                    ticket.getFraccion()
+                   
+                };
+                modelo.addRow(rowData);
+                tblLista.setModel(modelo);
+                }
+                
+            }
+        }
+    
+     
+}catch (Exception e) {
+JOptionPane.showMessageDialog(null, "La lista se encuentra vacia ");
+}
+}else {
+JOptionPane.showMessageDialog(null, "NO SE HA ENCONTRADO PARAMETRO ");
+
+
+}
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+ public void Limpiar(){
+ try {
+DefaultTableModel modelo=(DefaultTableModel) tblLista.getModel();
+int filas=tblLista.getRowCount();
+for (int i = 0;i<=filas; i++) {
+modelo.removeRow(0);
+}
+} catch (Exception e) {
+JOptionPane.showMessageDialog(null, "Error al limpiar la tabla.");
+}
+ }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelLista;
-    private javax.swing.JRadioButton btnIngresoCedula;
-    private javax.swing.JRadioButton btnIngresoPlaca;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JComboBox<String> cbxParametro;
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblLista;
     private javax.swing.JTextField txtListar;
@@ -172,13 +296,11 @@ public class VentanaListar extends javax.swing.JInternalFrame {
         return PanelLista;
     }
 
-    public JRadioButton getBtnIngresoCedula() {
-        return btnIngresoCedula;
+    public JComboBox<String> getCbxParametro() {
+        return cbxParametro;
     }
 
-    public JRadioButton getBtnIngresoPlaca() {
-        return btnIngresoPlaca;
-    }
+   
 
     public JScrollPane getjScrollPane1() {
         return jScrollPane1;

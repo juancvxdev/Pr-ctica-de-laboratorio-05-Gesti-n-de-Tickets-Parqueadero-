@@ -79,7 +79,7 @@ public class VentanaIngresoTicket extends javax.swing.JInternalFrame {
         }
 
     }
-
+ 
     public void Limpiar() {
         txtValidarPlaca.setValue("");
 
