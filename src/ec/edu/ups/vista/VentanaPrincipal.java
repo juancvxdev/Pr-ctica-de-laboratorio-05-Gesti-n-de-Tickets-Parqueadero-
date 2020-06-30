@@ -103,7 +103,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ventanaListar.getPanelLista().setBorder(javax.swing.BorderFactory.createTitledBorder(null, mensajes.getString("PanelLista"),
                 javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP,
                 new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(0, 0, 0)));
-        
+        ventanaListar.getBtnBuscar().setText(mensajes.getString("btnBuscar"));
+        ventanaListar.getBtnSALIR1().setText(mensajes.getString("btnSALIR1"));
         
         
     }
@@ -219,6 +220,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         btnIdioma.setText("Idioma");
 
+        btnEspañol.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_MASK));
         btnEspañol.setText("Español");
         btnEspañol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -227,6 +229,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         btnIdioma.add(btnEspañol);
 
+        btnIngles.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.ALT_MASK));
         btnIngles.setText("Ingles");
         btnIngles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

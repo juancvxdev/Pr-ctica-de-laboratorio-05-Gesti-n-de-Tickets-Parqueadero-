@@ -7,6 +7,7 @@ package ec.edu.ups.vista;
 
 import ec.edu.ups.controlador.ControladorTicket;
 import ec.edu.ups.modelo.Ticket;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -44,7 +45,7 @@ public class VentanaListar extends javax.swing.JInternalFrame {
         txtListar = new javax.swing.JTextField();
         cbxParametro = new javax.swing.JComboBox<>();
         btnBuscar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnSALIR1 = new javax.swing.JButton();
 
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
@@ -96,10 +97,10 @@ public class VentanaListar extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton1.setText("SALIR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnSALIR1.setText("SALIR");
+        btnSALIR1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnSALIR1ActionPerformed(evt);
             }
         });
 
@@ -118,7 +119,7 @@ public class VentanaListar extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnBuscar)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)))
+                        .addComponent(btnSALIR1)))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         PanelListaLayout.setVerticalGroup(
@@ -129,7 +130,7 @@ public class VentanaListar extends javax.swing.JInternalFrame {
                     .addComponent(txtListar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbxParametro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar)
-                    .addComponent(jButton1))
+                    .addComponent(btnSALIR1))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(15, Short.MAX_VALUE))
@@ -264,9 +265,9 @@ JOptionPane.showMessageDialog(null, "NO SE HA ENCONTRADO PARAMETRO ");
 }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnSALIR1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSALIR1ActionPerformed
        this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnSALIR1ActionPerformed
  public void Limpiar(){
  try {
 DefaultTableModel modelo=(DefaultTableModel) tblLista.getModel();
@@ -281,8 +282,8 @@ JOptionPane.showMessageDialog(null, "Error al limpiar la tabla.");
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelLista;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnSALIR1;
     private javax.swing.JComboBox<String> cbxParametro;
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblLista;
     private javax.swing.JTextField txtListar;
@@ -314,5 +315,14 @@ JOptionPane.showMessageDialog(null, "Error al limpiar la tabla.");
         return txtListar;
     }
 
+    public JButton getBtnBuscar() {
+        return btnBuscar;
+    }
 
+    public JButton getBtnSALIR1() {
+        return btnSALIR1;
+    }
+
+    
+    
 }
