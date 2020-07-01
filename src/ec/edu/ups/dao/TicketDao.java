@@ -8,7 +8,6 @@ package ec.edu.ups.dao;
 import ec.edu.ups.idao.ITicketDao;
 
 import ec.edu.ups.modelo.Ticket;
-import ec.edu.ups.modelo.Vehiculo;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -16,7 +15,7 @@ import java.util.List;
 
 public class TicketDao implements ITicketDao {
 
-    private List<Ticket> tickets;
+    private final List<Ticket> tickets;
     private int codigo;
 
     public TicketDao() {

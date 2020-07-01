@@ -7,7 +7,6 @@ package ec.edu.ups.dao;
 
 import ec.edu.ups.idao.IClienteDao;
 import ec.edu.ups.modelo.Cliente;
-import ec.edu.ups.modelo.Vehiculo;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -18,9 +17,7 @@ import java.util.List;
  */
 public class ClienteDao implements IClienteDao {
 
-    private List<Cliente> clientes;
-    Vehiculo vehiculo;
-
+    private final List<Cliente> clientes;
     public ClienteDao() {
         clientes = new ArrayList<>();
     }
