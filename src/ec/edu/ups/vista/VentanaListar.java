@@ -46,6 +46,8 @@ public class VentanaListar extends javax.swing.JInternalFrame {
         cbxParametro = new javax.swing.JComboBox<>();
         btnBuscar = new javax.swing.JButton();
         btnSALIR1 = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
 
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
@@ -104,6 +106,20 @@ public class VentanaListar extends javax.swing.JInternalFrame {
             }
         });
 
+        btnLimpiar.setText("LIMPIAR");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+
+        btnActualizar.setText("ACTUALIZAR");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanelListaLayout = new javax.swing.GroupLayout(PanelLista);
         PanelLista.setLayout(PanelListaLayout);
         PanelListaLayout.setHorizontalGroup(
@@ -118,22 +134,28 @@ public class VentanaListar extends javax.swing.JInternalFrame {
                         .addComponent(cbxParametro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnBuscar)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnActualizar)
+                        .addGap(11, 11, 11)
+                        .addComponent(btnLimpiar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSALIR1)))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         PanelListaLayout.setVerticalGroup(
             PanelListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelListaLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(40, 40, 40)
                 .addGroup(PanelListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtListar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbxParametro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar)
-                    .addComponent(btnSALIR1))
+                    .addComponent(btnLimpiar)
+                    .addComponent(btnSALIR1)
+                    .addComponent(btnActualizar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -268,6 +290,44 @@ JOptionPane.showMessageDialog(null, "NO SE HA ENCONTRADO PARAMETRO ");
     private void btnSALIR1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSALIR1ActionPerformed
        this.dispose();
     }//GEN-LAST:event_btnSALIR1ActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+      txtListar.setText("");
+      cbxParametro.setSelectedIndex(0);
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+     DefaultTableModel modelo = (DefaultTableModel) tblLista.getModel();
+        modelo.setRowCount(0);
+try {
+        for (Ticket ticket : controladorTicket.ListarTickets()) {
+            if (ticket.isEstado() == false) {
+                Object[] rowData = {ticket.getNumero(),
+                    ticket.getFechaHoraIngreso(),
+                    ticket.getFechaHoraSalida(),
+                    ticket.getVehiculo().getMarca(),
+                    ticket.getVehiculo().getPlaca(),
+                    ticket.getVehiculo().getModelo(),
+                     ticket.getVehiculo().getCliente().getCedula(),
+                    ticket.getVehiculo().getCliente().getNombre(),
+                    ticket.getVehiculo().getCliente().getDireccion(),
+                    ticket.getVehiculo().getCliente().getTelefono(),
+                     "$ " + ticket.getTotal(),
+                    ticket.getFraccion()
+                   
+                };
+                modelo.addRow(rowData);
+                tblLista.setModel(modelo);
+            }
+        }
+    
+     
+}catch (Exception e) {
+JOptionPane.showMessageDialog(null, "La lista se encuentra vacia ");
+}
+
+         
+    }//GEN-LAST:event_btnActualizarActionPerformed
  public void Limpiar(){
  try {
 DefaultTableModel modelo=(DefaultTableModel) tblLista.getModel();
@@ -276,12 +336,14 @@ for (int i = 0;i<=filas; i++) {
 modelo.removeRow(0);
 }
 } catch (Exception e) {
-JOptionPane.showMessageDialog(null, "Error al limpiar la tabla.");
+
 }
  }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelLista;
+    private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnSALIR1;
     private javax.swing.JComboBox<String> cbxParametro;
     private javax.swing.JScrollPane jScrollPane1;
@@ -321,6 +383,14 @@ JOptionPane.showMessageDialog(null, "Error al limpiar la tabla.");
 
     public JButton getBtnSALIR1() {
         return btnSALIR1;
+    }
+
+    public JButton getBtnActualizar() {
+        return btnActualizar;
+    }
+
+    public JButton getBtnLimpiar() {
+        return btnLimpiar;
     }
 
     
