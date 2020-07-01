@@ -105,6 +105,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(0, 0, 0)));
         ventanaListar.getBtnBuscar().setText(mensajes.getString("btnBuscar"));
         ventanaListar.getBtnSALIR1().setText(mensajes.getString("btnSALIR1"));
+       ventanaListar.getBtnActualizar().setText(mensajes.getString("btnActualizar"));
+       ventanaListar.getBtnLimpiar().setText(mensajes.getString("btnLimpiar"));
         
         
     }
