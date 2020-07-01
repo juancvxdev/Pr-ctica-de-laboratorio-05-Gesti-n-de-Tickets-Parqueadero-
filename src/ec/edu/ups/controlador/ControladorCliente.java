@@ -19,8 +19,8 @@ import java.util.List;
  */
 public class ControladorCliente {
 
-    private IClienteDao clienteDAO;
-    private IVehiculoDao vehiculoDAO;
+    private final IClienteDao clienteDAO;
+    private final IVehiculoDao vehiculoDAO;
     private Cliente cliente;
     private Vehiculo vehiculo;
 
@@ -60,7 +60,7 @@ public class ControladorCliente {
     public void actualizarVehiculo(String placa, String marca, String modelo, Cliente cliente) {
         vehiculo = new Vehiculo(placa, marca, modelo, cliente);
         vehiculoDAO.update(vehiculo);
-        this.cliente.agregarVehiculo(vehiculo);
+        this.cliente.actualizarVehiculo(vehiculo);
         clienteDAO.update(cliente);
 
     }
