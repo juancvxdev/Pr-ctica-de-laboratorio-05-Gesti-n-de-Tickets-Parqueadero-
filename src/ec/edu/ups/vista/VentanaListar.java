@@ -11,7 +11,6 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -22,12 +21,13 @@ import javax.swing.table.DefaultTableModel;
  * @author paul_
  */
 public class VentanaListar extends javax.swing.JInternalFrame {
-    
+
     private ControladorTicket controladorTicket;
+
     public VentanaListar(ControladorTicket controladorTicket) {
         initComponents();
-        this.controladorTicket=controladorTicket;
-        
+        this.controladorTicket = controladorTicket;
+
     }
 
     /**
@@ -179,166 +179,160 @@ public class VentanaListar extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
-    DefaultTableModel modelo = (DefaultTableModel) tblLista.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) tblLista.getModel();
         modelo.setRowCount(0);
-try {
-        for (Ticket ticket : controladorTicket.ListarTickets()) {
-            if (ticket.isEstado() == false) {
-                Object[] rowData = {ticket.getNumero(),
-                    ticket.getFechaHoraIngreso(),
-                    ticket.getFechaHoraSalida(),
-                    ticket.getVehiculo().getMarca(),
-                    ticket.getVehiculo().getPlaca(),
-                    ticket.getVehiculo().getModelo(),
-                     ticket.getVehiculo().getCliente().getCedula(),
-                    ticket.getVehiculo().getCliente().getNombre(),
-                    ticket.getVehiculo().getCliente().getDireccion(),
-                    ticket.getVehiculo().getCliente().getTelefono(),
-                     "$ " + ticket.getTotal(),
-                    ticket.getFraccion()
-                   
-                };
-                modelo.addRow(rowData);
-                tblLista.setModel(modelo);
-            }
-        }
-    
-     
-}catch (Exception e) {
-JOptionPane.showMessageDialog(null, "La lista se encuentra vacia ");
-}
+        try {
+            for (Ticket ticket : controladorTicket.ListarTickets()) {
+                if (ticket.isEstado() == false) {
+                    Object[] rowData = {ticket.getNumero(),
+                        ticket.getFechaHoraIngreso(),
+                        ticket.getFechaHoraSalida(),
+                        ticket.getVehiculo().getPlaca(),
+                        ticket.getVehiculo().getMarca(),
+                        ticket.getVehiculo().getModelo(),
+                        ticket.getVehiculo().getCliente().getCedula(),
+                        ticket.getVehiculo().getCliente().getNombre(),
+                        ticket.getVehiculo().getCliente().getDireccion(),
+                        ticket.getVehiculo().getCliente().getTelefono(),
+                        "$ " + ticket.getTotal(),
+                        ticket.getFraccion()
 
- 
+                    };
+                    modelo.addRow(rowData);
+                    tblLista.setModel(modelo);
+                }
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "La lista se encuentra vacia ");
+        }
+
 
     }//GEN-LAST:event_formInternalFrameActivated
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-       DefaultTableModel modelo = (DefaultTableModel) tblLista.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) tblLista.getModel();
         modelo.setRowCount(0);
-        String parametro=txtListar.getText();
+        String parametro = txtListar.getText();
 
-if( (cbxParametro.getSelectedItem().equals("Cedula"))){
-    Limpiar();
-    try {
-        for (Ticket ticket : controladorTicket.ListarTickets()) {
-            if (ticket.isEstado() == false) {
-                if(ticket.getVehiculo().getCliente().getCedula().equals(parametro)){
-                    Object[] rowData = {ticket.getNumero(),
-                    ticket.getFechaHoraIngreso(),
-                    ticket.getFechaHoraSalida(),
-                    ticket.getVehiculo().getMarca(),
-                    ticket.getVehiculo().getPlaca(),
-                    ticket.getVehiculo().getModelo(),
-                     ticket.getVehiculo().getCliente().getCedula(),
-                    ticket.getVehiculo().getCliente().getNombre(),
-                    ticket.getVehiculo().getCliente().getDireccion(),
-                    ticket.getVehiculo().getCliente().getTelefono(),
-                     "$ " + ticket.getTotal(),
-                    ticket.getFraccion()
-                   
-                };
-                modelo.addRow(rowData);
-                tblLista.setModel(modelo);
+        if ((cbxParametro.getSelectedItem().equals("Cedula"))) {
+            Limpiar();
+            try {
+                for (Ticket ticket : controladorTicket.ListarTickets()) {
+                    if (ticket.isEstado() == false) {
+                        if (ticket.getVehiculo().getCliente().getCedula().equals(parametro)) {
+                            Object[] rowData = {ticket.getNumero(),
+                                ticket.getFechaHoraIngreso(),
+                                ticket.getFechaHoraSalida(),
+                                ticket.getVehiculo().getPlaca(),
+                                ticket.getVehiculo().getMarca(),
+                                ticket.getVehiculo().getModelo(),
+                                ticket.getVehiculo().getCliente().getCedula(),
+                                ticket.getVehiculo().getCliente().getNombre(),
+                                ticket.getVehiculo().getCliente().getDireccion(),
+                                ticket.getVehiculo().getCliente().getTelefono(),
+                                "$ " + ticket.getTotal(),
+                                ticket.getFraccion()
+
+                            };
+                            modelo.addRow(rowData);
+                            tblLista.setModel(modelo);
+                        }
+
+                    }
                 }
-                
-            }
-        }
-    
-     
-}catch (Exception e) {
-JOptionPane.showMessageDialog(null, "La lista se encuentra vacia ");
-}
 
-}else if(cbxParametro.getSelectedItem().equals("Placa")){
- Limpiar();
- try {
-        for (Ticket ticket : controladorTicket.ListarTickets()) {
-            if (ticket.isEstado() == false) {
-                if(ticket.getVehiculo().getPlaca().equals(parametro)){
-                    Object[] rowData = {ticket.getNumero(),
-                    ticket.getFechaHoraIngreso(),
-                    ticket.getFechaHoraSalida(),
-                    ticket.getVehiculo().getMarca(),
-                    ticket.getVehiculo().getPlaca(),
-                    ticket.getVehiculo().getModelo(),
-                     ticket.getVehiculo().getCliente().getCedula(),
-                    ticket.getVehiculo().getCliente().getNombre(),
-                    ticket.getVehiculo().getCliente().getDireccion(),
-                    ticket.getVehiculo().getCliente().getTelefono(),
-                     "$ " + ticket.getTotal(),
-                    ticket.getFraccion()
-                   
-                };
-                modelo.addRow(rowData);
-                tblLista.setModel(modelo);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "La lista se encuentra vacia ");
+            }
+
+        } else if (cbxParametro.getSelectedItem().equals("Placa")) {
+            Limpiar();
+            try {
+                for (Ticket ticket : controladorTicket.ListarTickets()) {
+                    if (ticket.isEstado() == false) {
+                        if (ticket.getVehiculo().getPlaca().equals(parametro)) {
+                            Object[] rowData = {ticket.getNumero(),
+                                ticket.getFechaHoraIngreso(),
+                                ticket.getFechaHoraSalida(),
+                                ticket.getVehiculo().getPlaca(),
+                                ticket.getVehiculo().getMarca(),
+                                ticket.getVehiculo().getModelo(),
+                                ticket.getVehiculo().getCliente().getCedula(),
+                                ticket.getVehiculo().getCliente().getNombre(),
+                                ticket.getVehiculo().getCliente().getDireccion(),
+                                ticket.getVehiculo().getCliente().getTelefono(),
+                                "$ " + ticket.getTotal(),
+                                ticket.getFraccion()
+
+                            };
+                            modelo.addRow(rowData);
+                            tblLista.setModel(modelo);
+                        }
+
+                    }
                 }
-                
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "La lista se encuentra vacia ");
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "NO SE HA ENCONTRADO PARAMETRO ");
+
         }
-    
-     
-}catch (Exception e) {
-JOptionPane.showMessageDialog(null, "La lista se encuentra vacia ");
-}
-}else {
-JOptionPane.showMessageDialog(null, "NO SE HA ENCONTRADO PARAMETRO ");
-
-
-}
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnSALIR1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSALIR1ActionPerformed
-       this.dispose();
+        this.dispose();
     }//GEN-LAST:event_btnSALIR1ActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-      txtListar.setText("");
-      cbxParametro.setSelectedIndex(0);
+        txtListar.setText("");
+        cbxParametro.setSelectedIndex(0);
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-     DefaultTableModel modelo = (DefaultTableModel) tblLista.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) tblLista.getModel();
         modelo.setRowCount(0);
-try {
-        for (Ticket ticket : controladorTicket.ListarTickets()) {
-            if (ticket.isEstado() == false) {
-                Object[] rowData = {ticket.getNumero(),
-                    ticket.getFechaHoraIngreso(),
-                    ticket.getFechaHoraSalida(),
-                    ticket.getVehiculo().getMarca(),
-                    ticket.getVehiculo().getPlaca(),
-                    ticket.getVehiculo().getModelo(),
-                     ticket.getVehiculo().getCliente().getCedula(),
-                    ticket.getVehiculo().getCliente().getNombre(),
-                    ticket.getVehiculo().getCliente().getDireccion(),
-                    ticket.getVehiculo().getCliente().getTelefono(),
-                     "$ " + ticket.getTotal(),
-                    ticket.getFraccion()
-                   
-                };
-                modelo.addRow(rowData);
-                tblLista.setModel(modelo);
+        try {
+            for (Ticket ticket : controladorTicket.ListarTickets()) {
+                if (ticket.isEstado() == false) {
+                    Object[] rowData = {ticket.getNumero(),
+                        ticket.getFechaHoraIngreso(),
+                        ticket.getFechaHoraSalida(),
+                        ticket.getVehiculo().getPlaca(),
+                        ticket.getVehiculo().getMarca(),
+                        ticket.getVehiculo().getModelo(),
+                        ticket.getVehiculo().getCliente().getCedula(),
+                        ticket.getVehiculo().getCliente().getNombre(),
+                        ticket.getVehiculo().getCliente().getDireccion(),
+                        ticket.getVehiculo().getCliente().getTelefono(),
+                        "$ " + ticket.getTotal(),
+                        ticket.getFraccion()
+
+                    };
+                    modelo.addRow(rowData);
+                    tblLista.setModel(modelo);
+                }
             }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "La lista se encuentra vacia ");
         }
-    
-     
-}catch (Exception e) {
-JOptionPane.showMessageDialog(null, "La lista se encuentra vacia ");
-}
 
-         
+
     }//GEN-LAST:event_btnActualizarActionPerformed
- public void Limpiar(){
- try {
-DefaultTableModel modelo=(DefaultTableModel) tblLista.getModel();
-int filas=tblLista.getRowCount();
-for (int i = 0;i<=filas; i++) {
-modelo.removeRow(0);
-}
-} catch (Exception e) {
+    public void Limpiar() {
+        try {
+            DefaultTableModel modelo = (DefaultTableModel) tblLista.getModel();
+            int filas = tblLista.getRowCount();
+            for (int i = 0; i <= filas; i++) {
+                modelo.removeRow(0);
+            }
+        } catch (Exception e) {
 
-}
- }
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelLista;
     private javax.swing.JButton btnActualizar;
@@ -362,8 +356,6 @@ modelo.removeRow(0);
     public JComboBox<String> getCbxParametro() {
         return cbxParametro;
     }
-
-   
 
     public JScrollPane getjScrollPane1() {
         return jScrollPane1;
@@ -393,6 +385,4 @@ modelo.removeRow(0);
         return btnLimpiar;
     }
 
-    
-    
 }
